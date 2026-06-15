@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=20260615g">
+  <link rel="stylesheet" href="styles.css?v=20260615h">
 
   <!-- Favicon SVG inline (manzana NF) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23E6EDD5'/><text x='16' y='22' font-size='16' font-family='sans-serif' font-weight='900' fill='%236A9940' text-anchor='middle'>N</text></svg>">
@@ -100,24 +100,16 @@
      HERO
 ───────────────────────────────────────── -->
 <section class="hero" id="inicio" aria-label="Bienvenida">
+  <div class="hero-grid">
 
-  <!-- Label script arriba derecha -->
-  <p class="hero-label" aria-hidden="true">Nernutri</p>
-
-  <!-- Titular editorial grande -->
-  <div class="hero-headline">
-    <h1>
-      <span class="hero-h1-bold">Come bien.</span>
-      <em class="hero-h1-script">Vive mejor.</em>
-    </h1>
-  </div>
-
-  <!-- Dos paneles: CTA + foto -->
-  <div class="hero-panels">
-
-    <div class="hero-panel-cta">
-      <p class="hero-panel-q">¿Te gustaría mejorar tu relación con la comida?</p>
-      <a class="hero-panel-wa"
+    <div class="hero-text">
+      <p class="hero-eyebrow">Nerea Fernández · Dietista</p>
+      <h1 class="hero-title">
+        <span class="hero-h1-bold">Come bien.</span>
+        <em class="hero-h1-script">Vive mejor.</em>
+      </h1>
+      <p class="hero-q">¿Te gustaría mejorar tu relación con la comida?</p>
+      <a class="hero-wa"
          href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta."
          target="_blank" rel="noopener"
          aria-label="Reservar consulta por WhatsApp">
@@ -126,21 +118,20 @@
         </svg>
         Reservar consulta →
       </a>
-      <div class="hero-panel-meta">
-        <div class="hero-panel-meta-item">Dietista colegiada</div>
-        <div class="hero-panel-meta-item">8 especialidades</div>
-        <div class="hero-panel-meta-item">Online y presencial</div>
+      <div class="hero-meta">
+        <span>Dietista colegiada</span>
+        <span>8 especialidades</span>
+        <span>Online y presencial</span>
       </div>
     </div>
 
-    <div class="hero-panel-img" aria-hidden="true">
-      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+    <div class="hero-photo" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=1100&amp;q=80"
         alt="" loading="eager"
         onerror="this.onerror=null;this.src='assets/img/hero-food.jpg'">
     </div>
 
   </div>
-
 </section>
 
 <!-- ─────────────────────────────────────────
@@ -242,7 +233,7 @@
 
     <article class="service-row reveal" aria-label="Recomposición corporal">
       <div class="service-row-img">
-        <img src="assets/img/hero-food.jpg" alt="Plato saludable" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Plato saludable" loading="lazy" onerror="this.onerror=null;this.src='assets/img/hero-food.jpg'">
       </div>
       <div class="service-row-text">
         <h3 class="service-row-title">
@@ -256,7 +247,7 @@
 
     <article class="service-row reveal" aria-label="Alimentación vegana y vegetariana">
       <div class="service-row-img">
-        <img src="assets/img/testimonial-3.jpg" alt="Plato vegano" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Plato vegano" loading="lazy" onerror="this.onerror=null;this.src='assets/img/testimonial-3.jpg'">
       </div>
       <div class="service-row-text">
         <h3 class="service-row-title">
@@ -270,7 +261,7 @@
 
     <article class="service-row reveal" aria-label="Déficits nutricionales">
       <div class="service-row-img">
-        <img src="assets/img/testimonial-1.jpg" alt="Alimentación nutritiva" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Alimentación nutritiva" loading="lazy" onerror="this.onerror=null;this.src='assets/img/testimonial-1.jpg'">
       </div>
       <div class="service-row-text">
         <h3 class="service-row-title">
@@ -284,7 +275,7 @@
 
     <article class="service-row reveal" aria-label="Alergias e intolerancias">
       <div class="service-row-img">
-        <img src="assets/img/testimonial-2.jpg" alt="Plato saludable sin alérgenos" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Plato saludable sin alérgenos" loading="lazy" onerror="this.onerror=null;this.src='assets/img/testimonial-2.jpg'">
       </div>
       <div class="service-row-text">
         <h3 class="service-row-title">
@@ -298,7 +289,7 @@
 
     <article class="service-row reveal" aria-label="Patologías">
       <div class="service-row-img">
-        <img src="assets/img/testimonial-4.jpg" alt="Plato equilibrado" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Plato equilibrado" loading="lazy" onerror="this.onerror=null;this.src='assets/img/testimonial-4.jpg'">
       </div>
       <div class="service-row-text">
         <h3 class="service-row-title">
@@ -312,7 +303,7 @@
 
     <article class="service-row reveal" aria-label="Rendimiento deportivo">
       <div class="service-row-img">
-        <img src="assets/img/testimonial-5.jpg" alt="Nutrición deportiva" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Nutrición deportiva" loading="lazy" onerror="this.onerror=null;this.src='assets/img/testimonial-5.jpg'">
       </div>
       <div class="service-row-text">
         <h3 class="service-row-title">
@@ -546,10 +537,10 @@
   </div>
 </footer>
 
-<script defer src="lib/gsap.min.js?v=20260615g"></script>
-<script defer src="lib/ScrollTrigger.min.js?v=20260615g"></script>
-<script defer src="lib/manifest.js?v=20260615g"></script>
-<script defer src="main.js?v=20260615g"></script>
+<script defer src="lib/gsap.min.js?v=20260615h"></script>
+<script defer src="lib/ScrollTrigger.min.js?v=20260615h"></script>
+<script defer src="lib/manifest.js?v=20260615h"></script>
+<script defer src="main.js?v=20260615h"></script>
 
 </body>
 </html>
