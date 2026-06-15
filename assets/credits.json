@@ -1,0 +1,23 @@
+{
+  "nerea.webp": {
+    "source": "Foto propia",
+    "author": "Nerea Fernández",
+    "note": "Reemplazar con foto real de la dietista"
+  },
+  "testimonial-1.jpg": {
+    "source": "Foto de cliente",
+    "note": "Sweet potato with ham and cheese — foto real de cliente"
+  },
+  "testimonial-2.jpg": {
+    "source": "Foto de cliente",
+    "note": "Bowl con carne, boniato y aguacate — foto real de cliente"
+  },
+  "testimonial-3.jpg": {
+    "source": "Foto de cliente",
+    "note": "Berenjenas rellenas — foto real de cliente"
+  },
+  "testimonial-4.jpg": {
+    "source": "Foto de cliente",
+    "note": "Pasta con ricotta — foto real de cliente"
+  }
+}
