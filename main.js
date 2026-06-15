@@ -252,19 +252,54 @@
      8. TESTIMONIALS — swap background images
   ══════════════════════════════════════════ */
   function initTestimonials() {
-    /* If photos don't load, show a gradient fallback */
-    $$(".testimonial-bg").forEach(function (bg, i) {
-      var colors = [
-        "linear-gradient(135deg, #1a3a28 0%, #0d2a1e 100%)",
-        "linear-gradient(135deg, #1a2838 0%, #0d1a2a 100%)",
-        "linear-gradient(135deg, #2a1a38 0%, #1a0d2a 100%)",
-        "linear-gradient(135deg, #38281a 0%, #2a1a0d 100%)"
-      ];
-      var img = bg.style.backgroundImage;
-      if (!img || img === "none" || img === "") {
-        bg.style.background = colors[i % colors.length];
-      }
-    });
+    var track = $("#tcar-track");
+    if (!track) return;
+    var slides = $$(".tcard", track);
+    if (slides.length < 2) return;
+
+    var prevBtn = $("#tcar-prev");
+    var nextBtn = $("#tcar-next");
+    var dotsWrap = $("#tcar-dots");
+    var i = 0, timer = null, AUTO = 6000;
+    var dots = [];
+
+    if (dotsWrap) {
+      slides.forEach(function (_, n) {
+        var b = document.createElement("button");
+        b.className = "tcar-dot";
+        b.type = "button";
+        b.setAttribute("role", "tab");
+        b.setAttribute("aria-label", "Ir al testimonio " + (n + 1));
+        b.addEventListener("click", function () { go(n); restart(); });
+        dotsWrap.appendChild(b);
+        dots.push(b);
+      });
+    }
+
+    function go(n) {
+      i = (n + slides.length) % slides.length;
+      track.style.transform = "translateX(" + (-i * 100) + "%)";
+      dots.forEach(function (d, k) {
+        d.classList.toggle("is-active", k === i);
+        d.setAttribute("aria-selected", k === i ? "true" : "false");
+      });
+    }
+    function nextSlide() { go(i + 1); }
+    function start() { if (!timer) timer = setInterval(nextSlide, AUTO); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { stop(); start(); }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { go(i - 1); restart(); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { go(i + 1); restart(); });
+
+    var car = track.closest(".tcar");
+    if (car) {
+      car.addEventListener("mouseenter", stop);
+      car.addEventListener("mouseleave", start);
+    }
+
+    go(0);
+    start();
   }
 
   /* ══════════════════════════════════════════
