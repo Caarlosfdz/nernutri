@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260615d
+   NERNUTRI — styles.css  ?v=20260615e
    Paleta natural: fondo crema cálido · verde salvia · tipografía cálida
    =============================================================
 
@@ -20,17 +20,17 @@
 :root {
   /* Paleta natural */
   --bg:        #FAFAF7;       /* blanco cálido */
-  --bg-2:      #F3F7F1;       /* verde salvia muy claro */
-  --bg-3:      #EBF2E8;       /* verde salvia suave */
+  --bg-2:      #F2F4E9;       /* oliva muy claro */
+  --bg-3:      #E5EDD4;       /* oliva suave */
   --card:      #FFFFFF;
-  --ink:       #1B2B1D;       /* verde muy oscuro, casi negro */
-  --ink-soft:  #3D5140;       /* verde oscuro medio */
-  --ink-mute:  #7A9480;       /* verde medio */
-  --accent:    #6BBD76;       /* verde salvia del logo */
-  --accent-2:  #52A85E;       /* verde más oscuro */
-  --accent-light: #EBF5EC;    /* verde muy claro para fondos */
-  --warm:      #F7F2EA;       /* crema cálida */
-  --warm-2:    #EDE5D8;       /* crema más oscura */
+  --ink:       #1A2B12;       /* verde oliva muy oscuro */
+  --ink-soft:  #3A5028;       /* oliva oscuro medio */
+  --ink-mute:  #6B7E50;       /* oliva apagado */
+  --accent:    #6A9940;       /* verde botánico oliva */
+  --accent-2:  #4D7528;       /* verde bosque oscuro */
+  --accent-light: #E6EDD5;    /* oliva muy claro para fondos */
+  --warm:      #F5F0E6;       /* crema cálida */
+  --warm-2:    #EAE2D0;       /* crema más oscura */
   --cream:     #EDE8D5;       /* beige cálido para secciones */
   --line:      rgba(27,43,29,.1);
   --line-soft: rgba(27,43,29,.06);
@@ -208,12 +208,12 @@ h1, h2, h3, h4 {
 .btn-primary {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(107,189,118,.25);
+  box-shadow: 0 4px 16px rgba(106,153,64,.25);
 }
 .btn-primary:hover {
   background: var(--accent-2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(107,189,118,.35);
+  box-shadow: 0 8px 28px rgba(106,153,64,.35);
 }
 .btn-primary:active { transform: translateY(0); }
 
@@ -254,17 +254,11 @@ h1, h2, h3, h4 {
 }
 
 .nav-logo {
-  display: flex; align-items: center; gap: .5rem;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  color: var(--ink);
+  display: flex; align-items: center;
 }
-.nav-logo-icon { width: 26px; height: 26px; flex-shrink: 0; }
-/* .nav-wm wraps the wordmark as a SINGLE flex item, preventing gap between "Ner" and "nutri" */
-.nav-wm { letter-spacing: -0.035em; }
-.nav-wm > span { color: var(--accent-2); }
+/* Solo el icono SVG, sin texto */
+.nav-logo-icon { width: 40px; height: 40px; flex-shrink: 0; }
+.nav-wm { display: none; }
 
 .nav-links {
   display: none;
@@ -292,12 +286,12 @@ h1, h2, h3, h4 {
   border-radius: 100px;
   transition: background .2s, transform .25s var(--ease-out), box-shadow .25s;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(107,189,118,.25);
+  box-shadow: 0 2px 8px rgba(106,153,64,.25);
 }
 .nav-cta:hover {
   background: var(--accent-2);
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(107,189,118,.3);
+  box-shadow: 0 4px 16px rgba(106,153,64,.3);
 }
 
 /* Hamburger */
@@ -517,7 +511,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-label);
   font-size: .875rem; font-weight: 600; letter-spacing: .01em;
   width: fit-content;
-  box-shadow: 0 4px 16px rgba(107,189,118,.28);
+  box-shadow: 0 4px 16px rgba(106,153,64,.28);
   transition: background .2s, transform .25s var(--ease-out);
 }
 .hero-panel-wa:hover { background: var(--accent-2); transform: translateY(-2px); }
@@ -566,7 +560,7 @@ h1, h2, h3, h4 {
   font-size: clamp(8rem, 22vw, 20rem);
   font-weight: 900; line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(107,189,118,.08);
+  -webkit-text-stroke: 1px rgba(106,153,64,.08);
   pointer-events: none; user-select: none;
   letter-spacing: -0.05em;
 }
@@ -617,7 +611,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-label);
   font-size: .8125rem; font-weight: 700;
   letter-spacing: .03em; line-height: 1.4;
-  box-shadow: 0 8px 24px rgba(107,189,118,.35);
+  box-shadow: 0 8px 24px rgba(106,153,64,.35);
   text-align: center;
   max-width: 170px;
 }
@@ -627,7 +621,7 @@ h1, h2, h3, h4 {
   content: '';
   position: absolute;
   inset: -1.5rem;
-  border: 1.5px dashed rgba(107,189,118,.2);
+  border: 1.5px dashed rgba(106,153,64,.2);
   border-radius: calc(var(--r-xl) + 1.5rem);
   z-index: -1;
 }
@@ -780,7 +774,7 @@ h1, h2, h3, h4 {
   transition: border-color .3s, transform .4s var(--ease-out), box-shadow .4s;
 }
 .step-card:hover {
-  border-color: rgba(107,189,118,.3);
+  border-color: rgba(106,153,64,.3);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
@@ -792,7 +786,7 @@ h1, h2, h3, h4 {
   font-weight: 900; line-height: 1;
   letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(107,189,118,.25);
+  -webkit-text-stroke: 1.5px rgba(106,153,64,.25);
   margin-bottom: 1.25rem;
   display: block;
 }
@@ -922,7 +916,7 @@ h1, h2, h3, h4 {
 .cta-final-glow {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 700px 500px at 50% 50%,
-    rgba(107,189,118,.12) 0%, transparent 70%);
+    rgba(106,153,64,.12) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -930,7 +924,7 @@ h1, h2, h3, h4 {
 .cta-final-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(107,189,118,.18);
+  border: 1px solid rgba(106,153,64,.18);
   pointer-events: none;
   animation: ring-pulse 6s ease-in-out infinite;
 }
@@ -1013,8 +1007,8 @@ h1, h2, h3, h4 {
   color: #fff;
   margin-bottom: .75rem;
 }
-.footer-logo-icon { width: 28px; height: 28px; flex-shrink: 0; }
-.footer-logo .nav-wm { color: #fff; }
+.footer-logo-icon { width: 32px; height: 32px; flex-shrink: 0; }
+.footer-logo .nav-wm { display: inline; color: #fff; }
 .footer-logo .nav-wm > span { color: var(--accent); }
 
 .footer-tagline { font-size: .875rem; }
@@ -1086,7 +1080,7 @@ h1, h2, h3, h4 {
   z-index: 0; pointer-events: none;
   background:
     radial-gradient(circle 700px at var(--mx, 50%) var(--my, 50%),
-      rgba(107,189,118,.06) 0%, transparent 60%);
+      rgba(106,153,64,.06) 0%, transparent 60%);
   transition: background .15s linear;
 }
 
