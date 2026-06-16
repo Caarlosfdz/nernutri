@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616d
+   NERNUTRI — styles.css  ?v=20260616e
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -890,10 +890,11 @@ h1, h2, h3, h4 {
   font-family: var(--font-label);
   font-size: .9375rem; font-weight: 700; letter-spacing: .02em;
 }
-.tcard-id { display: flex; flex-direction: column; gap: .15rem; margin-right: auto; }
+.tcard-id { display: flex; flex-direction: column; gap: .15rem; margin-right: auto; flex: 1; min-width: 0; }
 .tcard-name {
   font-family: var(--font-display);
   font-size: 1.0625rem; font-weight: 600; color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .tcard-tag {
   font-family: var(--font-label);
@@ -1124,35 +1125,80 @@ h1, h2, h3, h4 {
 }
 
 /* =============================================================
-   8. RESPONSIVE
+   8. RESPONSIVE — mobile complete
    ============================================================= */
-@media (max-width: 539px) {
-  .hero-title { font-size: 2.5rem; }
-  .hero-actions { flex-direction: column; }
-  .btn { width: 100%; justify-content: center; }
-  .hero-trust { flex-direction: column; gap: .625rem; }
-  .hero-trust-sep { display: none; }
-  .about-img-badge { right: .5rem; bottom: -.5rem; }
-  .hero-img-stat { left: .5rem; }
+
+/* ── Tablet (≤ 860px): hero una columna, centrar texto ── */
+@media (max-width: 860px) {
+  .hero-text { text-align: center; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-q { max-width: 100%; margin-inline: auto; }
+  .hero-wa { align-self: center; }
+  .hero-free { justify-content: center; }
+  .hero-meta { justify-content: center; }
 }
-@media (min-width: 540px) {
-  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+
+/* ── Servicios (≤ 760px): imagen con ratio fijo, texto compacto ── */
+@media (max-width: 760px) {
+  .service-row { min-height: unset; }
+  .service-row-img { aspect-ratio: 16 / 9; }
+  .service-row-text { padding: 1.75rem var(--gutter) 2rem; }
+  .svc-bold   { font-size: clamp(1.625rem, 7.5vw, 2.5rem); }
+  .svc-script { font-size: clamp(1.125rem, 5vw, 1.625rem); }
+  .service-row-desc { font-size: 1rem; margin-top: .75rem; margin-bottom: 1.125rem; }
 }
-@media (min-width: 960px) {
-  .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+
+/* ── Móvil medio (≤ 580px) ── */
+@media (max-width: 580px) {
+  /* Nav: ocultar botón CTA para no saturar */
+  .nav-cta { display: none; }
+
+  /* Hero foto: ratio más bajo */
+  .hero-photo { aspect-ratio: 4 / 3; border-radius: var(--r-lg); }
+  .hero-h1-bold  { font-size: clamp(2rem, 9vw, 2.75rem); }
+  .hero-h1-script { font-size: clamp(1.75rem, 7.5vw, 2.25rem); }
+  .hero-wa { width: 100%; justify-content: center; }
+
+  /* Steps: lista vertical con nodo a la izquierda */
+  .steps-flow { grid-template-columns: 1fr; gap: 1.25rem; }
+  .step { flex-direction: row; align-items: flex-start; gap: .875rem; text-align: left; }
+  .step-node { flex-shrink: 0; width: 44px; height: 44px; margin-bottom: 0; }
+  .step-node span { font-size: 1.125rem; }
+  .step-title { font-size: 1rem; margin-bottom: .2rem; }
+  .step-desc  { font-size: .875rem; }
+
+  /* Testimonials: tarjetas más anchas en móvil */
+  .tcard { flex: 0 0 min(84vw, 300px); }
+  .tcar-track { animation-duration: 28s; }
+  .tcar-viewport {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  }
+
+  /* CTA final: apilar botones */
+  .cta-final-actions { flex-direction: column; align-items: center; }
+  .cta-final-actions > * { width: min(100%, 320px); justify-content: center; }
+  .cta-final-ring-2, .cta-final-ring-3 { display: none; }
+
+  /* Footer */
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .footer-legal  { flex-wrap: wrap; gap: .625rem; }
 }
-@media (min-width: 1280px) {
-  .testimonials-grid { grid-template-columns: repeat(5, 1fr); }
+
+/* ── Móvil pequeño (≤ 380px) ── */
+@media (max-width: 380px) {
+  .hero-h1-bold   { font-size: 1.875rem; }
+  .hero-h1-script { font-size: 1.625rem; }
+  .tcard { flex: 0 0 90vw; }
+  .display-lg { font-size: 1.75rem; }
 }
 
 /* =============================================================
    9. REDUCED-MOTION
    ============================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
+  .marquee-track, .tcar-track { animation: none; }
   .splash-bar   { animation: none; width: 100%; }
   .cta-final-ring { animation: none; }
-  .hero-kicker, .hero-title, .hero-sub, .hero-actions, .hero-trust {
-    animation: none; opacity: 1;
-  }
+  .hero-text, .hero-photo { animation: none; opacity: 1; }
 }
