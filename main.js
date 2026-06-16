@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — main.js  ?v=20260615b
+   NERNUTRI — main.js  ?v=20260616h
    IIFE pattern. No import/export. No type="module".
    ============================================================= */
 (function () {
@@ -249,23 +249,31 @@
   }
 
   /* ══════════════════════════════════════════
-     8. TESTIMONIALS — ticker continuo (marquee de tarjetas)
+     8. NAV DROPDOWN — keyboard/click toggle
   ══════════════════════════════════════════ */
-  function initTestimonials() {
-    var track = $("#tcar-track");
-    if (!track) return;
-    var origSlides = $$(".tcard", track);
-    if (!origSlides.length) return;
-
-    /* Duplicar tarjetas para loop CSS infinito seamless */
-    var frag = document.createDocumentFragment();
-    origSlides.forEach(function (s) {
-      var c = s.cloneNode(true);
-      c.setAttribute("aria-hidden", "true");
-      frag.appendChild(c);
+  function initNavDropdown() {
+    $$(".nav-has-dropdown").forEach(function (item) {
+      var trigger = $(".nav-dropdown-trigger", item);
+      if (!trigger) return;
+      trigger.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = item.classList.toggle("is-open");
+        trigger.setAttribute("aria-expanded", open ? "true" : "false");
+      });
     });
-    track.appendChild(frag);
+    document.addEventListener("click", function () {
+      $$(".nav-has-dropdown.is-open").forEach(function (item) {
+        item.classList.remove("is-open");
+        var t = $(".nav-dropdown-trigger", item);
+        if (t) t.setAttribute("aria-expanded", "false");
+      });
+    });
   }
+
+  /* ══════════════════════════════════════════
+     (testimonials section now uses CSS masonry — no JS needed)
+  ══════════════════════════════════════════ */
+  function initTestimonials() { /* no-op */ }
 
   /* ══════════════════════════════════════════
      9. WHATSAPP CTAs — update links from manifest
@@ -308,6 +316,7 @@
   function boot() {
     safe(initSplash,       "splash");
     safe(initNav,          "nav");
+    safe(initNavDropdown,  "navDropdown");
     safe(initGradient,     "gradient");
     safe(initCursor,       "cursor");
     safe(initReveals,      "reveals");

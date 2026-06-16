@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616g
+   NERNUTRI — styles.css  ?v=20260616h
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -841,93 +841,89 @@ h1, h2, h3, h4 {
   margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
-.tcar { overflow: hidden; }
-
-.tcar-viewport {
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+/* --- Nav dropdown --- */
+.nav-has-dropdown { position: relative; }
+.nav-dropdown-trigger {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-label); font-size: .875rem; font-weight: 500;
+  color: var(--ink-soft); letter-spacing: .02em;
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: 0; transition: color .2s;
 }
-
-.tcar-track {
-  list-style: none; padding: .75rem 0; margin: 0;
-  display: flex;
-  gap: clamp(.875rem, 1.5vw, 1.25rem);
-  width: max-content;
-  animation: tcar-scroll 28s linear infinite;
-  animation-play-state: running;
-  will-change: transform;
+.nav-dropdown-trigger:hover { color: var(--accent-2); }
+.nav-chevron { transition: transform .2s; flex-shrink: 0; }
+.nav-has-dropdown:hover .nav-chevron,
+.nav-has-dropdown.is-open .nav-chevron { transform: rotate(180deg); }
+.nav-dropdown {
+  position: absolute; top: calc(100% + .625rem); left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--card); border: 1px solid var(--line-soft);
+  border-radius: var(--r-md); box-shadow: var(--shadow-lg);
+  padding: .375rem; min-width: 190px;
+  list-style: none; margin: 0;
+  opacity: 0; pointer-events: none;
+  transition: opacity .18s, transform .18s; z-index: 200;
 }
-
-@keyframes tcar-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+.nav-has-dropdown:hover .nav-dropdown,
+.nav-has-dropdown.is-open .nav-dropdown {
+  opacity: 1; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
 }
+.nav-dropdown a {
+  display: block; padding: .5rem .875rem;
+  border-radius: var(--r-sm); font-size: .875rem;
+  color: var(--ink-soft); text-decoration: none;
+  transition: background .15s, color .15s; white-space: nowrap;
+}
+.nav-dropdown a:hover { background: var(--accent-light); color: var(--accent-2); }
 
-.tcard {
-  flex: 0 0 clamp(260px, 22vw, 320px);
-  box-sizing: border-box;
+/* --- Testimonials masonry --- */
+.tmasonry {
+  columns: 3; column-gap: 1.25rem;
+  list-style: none; padding: 0; margin: 0;
+}
+.tmasonry-card {
+  break-inside: avoid;
   background: var(--card);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-lg);
-  padding: clamp(1rem, 2vw, 1.5rem);
+  padding: 1.25rem 1.375rem;
+  margin-bottom: 1.25rem;
   box-shadow: var(--shadow);
+  display: flex; flex-direction: column; gap: .875rem;
   transition: box-shadow .25s, transform .25s;
-  display: flex; flex-direction: column;
-  cursor: default;
 }
-.tcard:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-
-.tcard-top {
-  display: flex; align-items: center; gap: .875rem;
-  margin-bottom: 1.25rem;
+.tmasonry-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.tmasonry-top {
+  display: flex; align-items: center; gap: .75rem;
 }
-.tcard-avatar {
-  width: 48px; height: 48px; flex-shrink: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
-  color: #fff;
-  display: grid; place-items: center;
-  font-family: var(--font-label);
-  font-size: .9375rem; font-weight: 700; letter-spacing: .02em;
+.tmasonry-avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  background: var(--accent-light);
 }
-.tcard-id { display: flex; flex-direction: column; gap: .15rem; margin-right: auto; flex: 1; min-width: 0; }
-.tcard-name {
-  font-family: var(--font-display);
-  font-size: 1.0625rem; font-weight: 600; color: var(--ink);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.tmasonry-id { flex: 1; min-width: 0; }
+.tmasonry-name {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+  color: var(--ink); margin: 0; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
 }
-.tcard-tag {
-  font-family: var(--font-label);
-  font-size: .6875rem; font-weight: 500;
-  letter-spacing: .06em; text-transform: uppercase; color: var(--ink-mute);
+.tmasonry-service {
+  font-size: .6875rem; font-weight: 500; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--ink-mute); margin: 0;
 }
-.tcard-stars { color: #E8B931; font-size: .9375rem; letter-spacing: .04em; flex-shrink: 0; }
-
-.tcard-text {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
-  line-height: 1.7; color: var(--ink-soft);
-  margin-bottom: 1.25rem;
+.tmasonry-stars { color: #E8B931; font-size: .9375rem; letter-spacing: .04em; flex-shrink: 0; }
+.tmasonry-quote {
+  margin: 0; font-size: .9375rem; line-height: 1.7;
+  color: var(--ink-soft); font-style: italic;
 }
-.tcard-photo {
-  margin-bottom: 1.25rem;
-  border-radius: var(--r-md);
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-  background: var(--bg-3);
+.tmasonry-badge {
+  display: inline-block;
+  background: var(--accent-light); color: var(--accent-2);
+  border-radius: 999px; padding: .2rem .75rem;
+  font-size: .725rem; font-weight: 700; letter-spacing: .04em;
+  align-self: flex-start;
 }
-.tcard-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-.tcard-foot {
-  display: flex; align-items: center; gap: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line-soft);
-  font-family: var(--font-label);
-  font-size: .8125rem; color: var(--ink-mute);
-}
-.tcard-react { display: inline-flex; align-items: center; gap: .375rem; font-weight: 500; }
-.tcard-react svg { color: var(--accent); }
-.tcard-date { margin-left: auto; font-size: .75rem; }
 
 
 /* --- WhatsApp flotante --- */
@@ -1168,23 +1164,8 @@ h1, h2, h3, h4 {
   .step-title { font-size: 1rem; margin-bottom: .2rem; }
   .step-desc  { font-size: .875rem; }
 
-  /* Testimonials: scroll horizontal en móvil, sin animación */
-  .tcar-viewport {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-  .tcar-track {
-    animation: none;
-    width: max-content;
-  }
-  .tcard {
-    flex: 0 0 min(82vw, 290px);
-    scroll-snap-align: start;
-  }
+  /* Testimonials masonry: 2 cols on tablet */
+  .tmasonry { columns: 2; }
 
   /* CTA final: apilar botones */
   .cta-final-actions { flex-direction: column; align-items: center; }
@@ -1196,18 +1177,16 @@ h1, h2, h3, h4 {
   .footer-legal  { flex-wrap: wrap; gap: .625rem; }
 }
 
-/* ── Móvil pequeño (≤ 380px) ── */
+/* ── Móvil pequeño (≤ 580px) ── */
+@media (max-width: 580px) {
+  .tmasonry { columns: 1; }
+}
+
+/* ── Móvil muy pequeño (≤ 380px) ── */
 @media (max-width: 380px) {
   .hero-h1-bold   { font-size: 1.875rem; }
   .hero-h1-script { font-size: 1.625rem; }
-  .tcard { flex: 0 0 88vw; }
   .display-lg { font-size: 1.75rem; }
-}
-
-/* Ocultar scrollbar del ticker en móvil */
-@media (max-width: 580px) {
-  .tcar-viewport::-webkit-scrollbar { display: none; }
-  .tcar-viewport { scrollbar-width: none; -ms-overflow-style: none; }
 }
 
 /* =============================================================

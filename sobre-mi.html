@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=20260616g">
+  <link rel="stylesheet" href="styles.css?v=20260616h">
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%236A9940'/><text x='16' y='21' font-size='13' font-family='serif' font-weight='700' fill='%23fff' text-anchor='middle'>NF</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none'><rect width='40' height='50' rx='9' fill='%231A2B12'/><path d='M20 9C20 6 23 4 26 3' stroke='%2390c05a' stroke-width='2.5' stroke-linecap='round'/><path d='M20 13C17 9 9 10 6 15C3 20 3 30 6 37C9 43 13 47 17 48C19 48.5 21 48.5 23 48C27 47 31 43 34 37C37 30 37 20 34 15C31 10 23 9 20 13Z' stroke='%2390c05a' stroke-width='2.5' fill='none'/><path d='M20 42C20 42 12 35 12 28C12 25 15 23 18 25.5C19 26.5 20 29 20 29C20 29 21 26.5 22 25.5C25 23 28 25 28 28C28 35 20 42 20 42Z' fill='%2390c05a'/></svg>">
 </head>
 <body>
 
@@ -25,20 +25,31 @@
   <a href="index.html" class="nav-logo" aria-label="Nernutri — Inicio">
     <svg class="nav-logo-icon" viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M20 9C20 6 23 4 26 3" stroke="#6A9940" stroke-width="2" stroke-linecap="round"/>
-      <path d="M20 13C17 9 9 10 6 15C3 20 3 30 6 37C9 43 13 47 17 48C19 48.5 21 48.5 23 48C27 47 31 43 34 37C37 30 37 20 34 15C31 10 23 9 20 13Z" fill="#6A9940"/>
-      <text x="20" y="35" font-family="Fraunces, Georgia, serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">NF</text>
+      <path d="M20 13C17 9 9 10 6 15C3 20 3 30 6 37C9 43 13 47 17 48C19 48.5 21 48.5 23 48C27 47 31 43 34 37C37 30 37 20 34 15C31 10 23 9 20 13Z" stroke="#6A9940" stroke-width="2" fill="rgba(106,153,64,.1)"/>
+      <path d="M20 42C20 42 12 35 12 28C12 25 15 23 18 25.5C19 26.5 20 29 20 29C20 29 21 26.5 22 25.5C25 23 28 25 28 28C28 35 20 42 20 42Z" fill="#6A9940"/>
     </svg>
   </a>
 
   <ul class="nav-links" role="list">
+    <li><a href="index.html#inicio">Inicio</a></li>
     <li><a href="sobre-mi.html">Sobre mí</a></li>
+    <li class="nav-has-dropdown">
+      <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+        Consultas
+        <svg class="nav-chevron" width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <ul class="nav-dropdown" role="menu">
+        <li><a href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta%20online." target="_blank" rel="noopener" role="menuitem">Consulta Online</a></li>
+      </ul>
+    </li>
     <li><a href="index.html#servicios">Servicios</a></li>
-    <li><a href="index.html#como-funciona">Cómo funciona</a></li>
-    <li><a href="index.html#testimonios">Testimonios</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
   </ul>
 
   <a class="nav-cta"
-     href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20informativa%20gratis."
+     href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta."
      target="_blank" rel="noopener"
      aria-label="Contactar por WhatsApp">Reservar consulta</a>
 
@@ -48,12 +59,13 @@
 </nav>
 
 <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Menú" aria-hidden="true">
+  <a href="index.html#inicio" class="nav-mobile-link">Inicio</a>
   <a href="sobre-mi.html" class="nav-mobile-link">Sobre mí</a>
+  <a href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta%20online." class="nav-mobile-link" target="_blank" rel="noopener">Consulta Online</a>
   <a href="index.html#servicios" class="nav-mobile-link">Servicios</a>
-  <a href="index.html#como-funciona" class="nav-mobile-link">Cómo funciona</a>
-  <a href="index.html#testimonios" class="nav-mobile-link">Testimonios</a>
+  <a href="index.html#contacto" class="nav-mobile-link">Contacto</a>
   <a class="btn btn-primary"
-     href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20informativa%20gratis."
+     href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta."
      target="_blank" rel="noopener">Reservar consulta →</a>
 </div>
 
