@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616h
+   NERNUTRI — styles.css  ?v=20260616i
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -254,10 +254,14 @@ h1, h2, h3, h4 {
 }
 
 .nav-logo {
-  display: flex; align-items: center;
+  display: flex; align-items: center; gap: .4rem;
 }
-/* Solo el icono SVG, sin texto */
-.nav-logo-icon { width: 40px; height: 40px; flex-shrink: 0; }
+.nav-logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
+.nav-wordmark {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 600;
+  letter-spacing: .04em; color: var(--ink);
+}
 .nav-wm { display: none; }
 .nav-monogram {
   font-family: var(--font-display);
@@ -855,7 +859,7 @@ h1, h2, h3, h4 {
 .nav-has-dropdown:hover .nav-chevron,
 .nav-has-dropdown.is-open .nav-chevron { transform: rotate(180deg); }
 .nav-dropdown {
-  position: absolute; top: calc(100% + .625rem); left: 50%;
+  position: absolute; top: calc(100% + .875rem); left: 50%;
   transform: translateX(-50%) translateY(-6px);
   background: var(--card); border: 1px solid var(--line-soft);
   border-radius: var(--r-md); box-shadow: var(--shadow-lg);
@@ -864,6 +868,13 @@ h1, h2, h3, h4 {
   opacity: 0; pointer-events: none;
   transition: opacity .18s, transform .18s; z-index: 200;
 }
+.nav-dropdown::before,
+.nav-dropdown::after {
+  content: ''; position: absolute; bottom: 100%; left: 50%;
+  transform: translateX(-50%); border: 7px solid transparent;
+}
+.nav-dropdown::before { border-bottom-color: var(--line-soft); margin-bottom: -1px; }
+.nav-dropdown::after  { border-bottom-color: var(--card); }
 .nav-has-dropdown:hover .nav-dropdown,
 .nav-has-dropdown.is-open .nav-dropdown {
   opacity: 1; pointer-events: auto;
