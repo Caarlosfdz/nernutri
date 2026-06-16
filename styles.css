@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616f
+   NERNUTRI — styles.css  ?v=20260616g
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -855,6 +855,8 @@ h1, h2, h3, h4 {
   gap: clamp(.875rem, 1.5vw, 1.25rem);
   width: max-content;
   animation: tcar-scroll 28s linear infinite;
+  animation-play-state: running;
+  will-change: transform;
 }
 
 @keyframes tcar-scroll {
@@ -1212,8 +1214,8 @@ h1, h2, h3, h4 {
    9. REDUCED-MOTION
    ============================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track, .tcar-track { animation: none; }
-  .splash-bar   { animation: none; width: 100%; }
+  .marquee-track { animation: none; }
+  .splash-bar    { animation: none; width: 100%; }
   .cta-final-ring { animation: none; }
   .hero-text, .hero-photo { animation: none; opacity: 1; }
 }
