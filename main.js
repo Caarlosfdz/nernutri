@@ -249,57 +249,148 @@
   }
 
   /* ══════════════════════════════════════════
-     8. TESTIMONIALS — swap background images
+     8. TESTIMONIALS — multi-card infinite carousel
   ══════════════════════════════════════════ */
   function initTestimonials() {
-    var track = $("#tcar-track");
+    var track    = $("#tcar-track");
     if (!track) return;
-    var slides = $$(".tcard", track);
-    if (slides.length < 2) return;
+    var origSlides = $$(".tcard", track);
+    var total      = origSlides.length;
+    if (total < 2) return;
 
-    var prevBtn = $("#tcar-prev");
-    var nextBtn = $("#tcar-next");
+    var viewport = track.parentElement;
+    var car      = viewport && viewport.parentElement;
+    var prevBtn  = $("#tcar-prev");
+    var nextBtn  = $("#tcar-next");
     var dotsWrap = $("#tcar-dots");
-    var i = 0, timer = null, AUTO = 6000;
+
+    var TRANS_MS = 580;
+    var AUTO_MS  = 5000;
+    var idx      = 0;   /* index of left-most visible real card */
+    var busy     = false;
+    var timer    = null;
+
+    /* Clone all slides: [clone…] [real…] [clone…] for infinite loop */
+    var fragB = document.createDocumentFragment();
+    var fragA = document.createDocumentFragment();
+    origSlides.forEach(function (s) {
+      var cb = s.cloneNode(true); cb.setAttribute("aria-hidden", "true"); fragB.appendChild(cb);
+      var ca = s.cloneNode(true); ca.setAttribute("aria-hidden", "true"); fragA.appendChild(ca);
+    });
+    track.insertBefore(fragB, track.firstChild);
+    track.appendChild(fragA);
+
+    /* Responsive column count */
+    function getCols() {
+      var w = car ? car.offsetWidth : 900;
+      return w < 560 ? 1 : w < 900 ? 2 : 3;
+    }
+
+    /* Set all card widths so exactly getCols() fit in the viewport */
+    function applyWidths() {
+      if (!viewport) return;
+      var cols = getCols();
+      var gap  = parseFloat(getComputedStyle(track).columnGap) || 24;
+      var w    = Math.floor((viewport.offsetWidth - (cols - 1) * gap) / cols);
+      $$(".tcard", track).forEach(function (c) {
+        c.style.flexBasis = w + "px";
+        c.style.minWidth  = w + "px";
+        c.style.maxWidth  = w + "px";
+      });
+    }
+
+    /* Pixel step = card width + gap */
+    function getStep() {
+      var c = track.querySelector(".tcard");
+      if (!c) return 300;
+      return c.offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 24);
+    }
+
+    /* Move track without or with animation */
+    function setPos(n, animate) {
+      var px = (total + n) * getStep();
+      if (!animate) {
+        track.style.transition = "none";
+        track.style.transform  = "translateX(-" + px + "px)";
+        track.offsetHeight;   /* force reflow */
+      } else {
+        track.style.transition = "transform " + (TRANS_MS / 1000) + "s cubic-bezier(.4,0,.2,1)";
+        track.style.transform  = "translateX(-" + px + "px)";
+      }
+    }
+
+    /* Dots */
     var dots = [];
-
     if (dotsWrap) {
-      slides.forEach(function (_, n) {
-        var b = document.createElement("button");
-        b.className = "tcar-dot";
-        b.type = "button";
-        b.setAttribute("role", "tab");
-        b.setAttribute("aria-label", "Ir al testimonio " + (n + 1));
-        b.addEventListener("click", function () { go(n); restart(); });
-        dotsWrap.appendChild(b);
-        dots.push(b);
+      dotsWrap.innerHTML = "";
+      for (var n = 0; n < total; n++) {
+        (function (n) {
+          var b = document.createElement("button");
+          b.className = "tcar-dot";
+          b.type      = "button";
+          b.setAttribute("role", "tab");
+          b.setAttribute("aria-label", "Ir al testimonio " + (n + 1));
+          b.addEventListener("click", function () { goTo(n); restart(); });
+          dotsWrap.appendChild(b);
+          dots.push(b);
+        })(n);
+      }
+    }
+
+    function updateDots() {
+      var d = ((idx % total) + total) % total;
+      dots.forEach(function (dot, k) {
+        dot.classList.toggle("is-active", k === d);
+        dot.setAttribute("aria-selected", k === d ? "true" : "false");
       });
     }
 
-    function go(n) {
-      i = (n + slides.length) % slides.length;
-      track.style.transform = "translateX(" + (-i * 100) + "%)";
-      dots.forEach(function (d, k) {
-        d.classList.toggle("is-active", k === i);
-        d.setAttribute("aria-selected", k === i ? "true" : "false");
-      });
+    function goTo(n) { idx = ((n % total) + total) % total; setPos(idx, true); updateDots(); }
+
+    function next() {
+      if (busy) return; busy = true;
+      idx++;
+      setPos(idx, true); updateDots();
+      setTimeout(function () {
+        if (idx >= total) { idx = 0; setPos(0, false); }
+        busy = false;
+      }, TRANS_MS + 60);
     }
-    function nextSlide() { go(i + 1); }
-    function start() { if (!timer) timer = setInterval(nextSlide, AUTO); }
-    function stop() { if (timer) { clearInterval(timer); timer = null; } }
-    function restart() { stop(); start(); }
 
-    if (prevBtn) prevBtn.addEventListener("click", function () { go(i - 1); restart(); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { go(i + 1); restart(); });
+    function prev() {
+      if (busy) return; busy = true;
+      idx--;
+      setPos(idx, true); updateDots();
+      setTimeout(function () {
+        if (idx < 0) { idx = total - 1; setPos(total - 1, false); }
+        busy = false;
+      }, TRANS_MS + 60);
+    }
 
-    var car = track.closest(".tcar");
+    function startTimer() { if (!timer) timer = setInterval(next, AUTO_MS); }
+    function stopTimer()  { clearInterval(timer); timer = null; }
+    function restart()    { stopTimer(); startTimer(); }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); restart(); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); restart(); });
     if (car) {
-      car.addEventListener("mouseenter", stop);
-      car.addEventListener("mouseleave", start);
+      car.addEventListener("mouseenter", stopTimer);
+      car.addEventListener("mouseleave", startTimer);
     }
 
-    go(0);
-    start();
+    var resizeT;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(function () { applyWidths(); setPos(idx, false); }, 150);
+    });
+
+    /* Init after layout */
+    applyWidths();
+    requestAnimationFrame(function () {
+      setPos(0, false);
+      updateDots();
+      startTimer();
+    });
   }
 
   /* ══════════════════════════════════════════
