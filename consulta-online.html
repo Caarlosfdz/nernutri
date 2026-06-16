@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Consulta Online con Nerea Fernández, dietista. Primera consulta, revisiones y seguimiento personalizado. Escríbeme y hablamos.">
+  <meta name="theme-color" content="#FAFAF7">
+  <title>Consulta Online · Nernutri</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="styles.css?v=20260616j">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none'><rect width='40' height='50' rx='9' fill='%231A2B12'/><path d='M20 9C20 6 23 4 26 3' stroke='%2390c05a' stroke-width='2.5' stroke-linecap='round'/><path d='M20 13C17 9 9 10 6 15C3 20 3 30 6 37C9 43 13 47 17 48C19 48.5 21 48.5 23 48C27 47 31 43 34 37C37 30 37 20 34 15C31 10 23 9 20 13Z' stroke='%2390c05a' stroke-width='2.5' fill='none'/><path d='M20 42C20 42 12 35 12 28C12 25 15 23 18 25.5C19 26.5 20 29 20 29C20 29 21 26.5 22 25.5C25 23 28 25 28 28C28 35 20 42 20 42Z' fill='%2390c05a'/></svg>">
+
+  <style>
+    /* ── Consulta Online — estilos de página ── */
+
+    /* Hero */
+    .co-hero {
+      min-height: 52vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+      background: var(--bg);
+      padding-top: 5rem;
+    }
+    .co-hero-text {
+      padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+    }
+    .co-hero-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+    .co-hero-bold {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -.02em;
+    }
+    .co-hero-script {
+      font-family: var(--font-script);
+      font-size: clamp(3rem, 6.5vw, 5rem);
+      color: var(--accent-2);
+      font-style: normal;
+      margin-top: -.25rem;
+    }
+    .co-hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--ink-mute);
+      max-width: 38ch;
+      line-height: 1.65;
+    }
+    .co-hero-img {
+      height: 100%;
+      min-height: 52vh;
+      overflow: hidden;
+    }
+    .co-hero-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Split section (1ª Consulta + Revisiones) */
+    .co-split {
+      background: var(--warm);
+      padding: clamp(4rem, 8vw, 6rem) 0;
+    }
+    .co-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+    .co-block h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: .5rem;
+      display: inline-block;
+    }
+    .co-block p {
+      color: var(--ink-soft);
+      font-size: .9375rem;
+      line-height: 1.75;
+      margin-bottom: .875rem;
+    }
+    .co-duration {
+      font-family: var(--font-label);
+      font-size: .8125rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-top: 1.25rem !important;
+    }
+
+    /* Divider section — plan delivery */
+    .co-plan {
+      background: var(--bg);
+      padding: clamp(4rem, 8vw, 6rem) 0;
+    }
+    .co-plan-inner {
+      max-width: 720px;
+    }
+    .co-plan h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: .5rem;
+      display: inline-block;
+    }
+    .co-plan p {
+      color: var(--ink-soft);
+      font-size: .9375rem;
+      line-height: 1.75;
+      margin-bottom: .875rem;
+    }
+
+    /* Includes */
+    .co-includes {
+      background: var(--bg-2);
+      padding: clamp(4rem, 8vw, 6rem) 0;
+      text-align: center;
+    }
+    .co-includes-kicker {
+      font-family: var(--font-label);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: .75rem;
+    }
+    .co-includes h2 {
+      font-family: var(--font-script);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      color: var(--ink);
+      margin-bottom: .5rem;
+    }
+    .co-includes-sub {
+      font-size: .9375rem;
+      color: var(--ink-mute);
+      margin-bottom: 2.5rem;
+    }
+    .co-includes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .co-include-item {
+      background: var(--card);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--r-lg);
+      padding: 1.5rem 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .co-include-icon {
+      font-size: 1.5rem;
+      margin-bottom: .75rem;
+      display: block;
+    }
+    .co-include-title {
+      font-family: var(--font-display);
+      font-size: .9375rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .375rem;
+    }
+    .co-include-desc {
+      font-size: .8125rem;
+      color: var(--ink-mute);
+      line-height: 1.6;
+    }
+
+    /* How section */
+    .co-how {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 480px;
+    }
+    .co-how-img {
+      overflow: hidden;
+    }
+    .co-how-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .co-how-text {
+      background: var(--warm);
+      padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .co-how-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--ink);
+      font-style: italic;
+      line-height: 1.1;
+    }
+    .co-how-text p {
+      color: var(--ink-soft);
+      font-size: .9375rem;
+      line-height: 1.75;
+    }
+    .co-how-note {
+      font-size: .8125rem;
+      color: var(--ink-mute);
+      font-style: italic;
+      border-left: 3px solid var(--accent-light);
+      padding-left: .875rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 720px) {
+      .co-hero { grid-template-columns: 1fr; }
+      .co-hero-img { min-height: 220px; order: -1; }
+      .co-hero-text { padding: 2rem 1.25rem 1.5rem; }
+      .co-split-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .co-how { grid-template-columns: 1fr; }
+      .co-how-img { min-height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<div class="gradient-mesh" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav is-scrolled" id="nav" role="navigation" aria-label="Navegación principal">
+  <a href="index.html" class="nav-logo" aria-label="Nernutri — Inicio">
+    <svg class="nav-logo-icon" viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20 9C20 6 23 4 26 3" stroke="#6A9940" stroke-width="2" stroke-linecap="round"/>
+      <path d="M20 13C17 9 9 10 6 15C3 20 3 30 6 37C9 43 13 47 17 48C19 48.5 21 48.5 23 48C27 47 31 43 34 37C37 30 37 20 34 15C31 10 23 9 20 13Z" stroke="#6A9940" stroke-width="2" fill="rgba(106,153,64,.1)"/>
+      <path d="M20 42C20 42 12 35 12 28C12 25 15 23 18 25.5C19 26.5 20 29 20 29C20 29 21 26.5 22 25.5C25 23 28 25 28 28C28 35 20 42 20 42Z" fill="#6A9940"/>
+    </svg>
+    <span class="nav-wordmark">Nernutri</span>
+  </a>
+
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#inicio">Inicio</a></li>
+    <li><a href="sobre-mi.html">Sobre mí</a></li>
+    <li class="nav-has-dropdown">
+      <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+        Consultas
+        <svg class="nav-chevron" width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <ul class="nav-dropdown" role="menu">
+        <li><a href="consulta-online.html" role="menuitem">Consulta Online</a></li>
+      </ul>
+    </li>
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+  </ul>
+
+  <a class="nav-cta"
+     href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta."
+     target="_blank" rel="noopener"
+     aria-label="Contactar por WhatsApp">Reservar consulta</a>
+
+  <button class="nav-burger" id="nav-burger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Menú" aria-hidden="true">
+  <a href="index.html#inicio" class="nav-mobile-link">Inicio</a>
+  <a href="sobre-mi.html" class="nav-mobile-link">Sobre mí</a>
+  <a href="consulta-online.html" class="nav-mobile-link">Consulta Online</a>
+  <a href="index.html#servicios" class="nav-mobile-link">Servicios</a>
+  <a href="index.html#contacto" class="nav-mobile-link">Contacto</a>
+  <a class="btn btn-primary"
+     href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta."
+     target="_blank" rel="noopener">Reservar consulta →</a>
+</div>
+
+<main id="main">
+
+<!-- ─── HERO ─── -->
+<section class="co-hero">
+  <div class="co-hero-text">
+    <h1 class="co-hero-title">
+      <span class="co-hero-bold">Consulta</span>
+      <span class="co-hero-script">Online</span>
+    </h1>
+    <p class="co-hero-sub">Nutrición personalizada desde donde estés. Sin desplazamientos, sin plantillas.</p>
+  </div>
+  <div class="co-hero-img">
+    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=85&fm=webp"
+         alt="Alimentos frescos y naturales" loading="eager">
+  </div>
+</section>
+
+<!-- ─── 1ª CONSULTA + REVISIONES ─── -->
+<section class="co-split">
+  <div class="container">
+    <div class="co-split-grid">
+
+      <div class="co-block reveal">
+        <h2>1ª Consulta</h2>
+        <p>En la primera consulta quiero conocerte bien. Hablaremos de ti: tu historial, tus hábitos actuales, cómo comes, lo que te gusta y lo que no, y qué te ha traído hasta aquí.</p>
+        <p>El objetivo es entender tu punto de partida real para diseñar un plan que encaje con tu vida — no con una plantilla.</p>
+        <p class="co-duration">Duración aproximada: 60 minutos</p>
+      </div>
+
+      <div class="co-block reveal reveal-delay-1">
+        <h2>Revisiones</h2>
+        <p>Tras poner en práctica el plan, hacemos una consulta de seguimiento para ver cómo ha ido. Revisamos juntos, ajustamos lo que haga falta y resolvemos todas tus dudas.</p>
+        <p>Cada revisión incluye un plan nutricional actualizado y adaptado a la evolución.</p>
+        <p class="co-duration">Duración aproximada: 30–45 minutos</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── ENTREGA DEL PLAN ─── -->
+<section class="co-plan">
+  <div class="container">
+    <div class="co-plan-inner reveal">
+      <h2>Entrega del plan</h2>
+      <p>En menos de 72 horas recibes tu plan completo: menús, recetas, recomendaciones específicas y todo el material que necesitas para empezar desde el primer día.</p>
+      <p>Si surge alguna duda después, puedes escribirme directamente por WhatsApp. Estoy aquí.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── QUÉ INCLUYE ─── -->
+<section class="co-includes">
+  <div class="container">
+    <p class="co-includes-kicker">Siempre incluido</p>
+    <h2>Asesoramiento sin restricciones</h2>
+    <p class="co-includes-sub">Todas las consultas incluyen:</p>
+    <div class="co-includes-grid">
+      <div class="co-include-item reveal">
+        <span class="co-include-icon" aria-hidden="true">🥗</span>
+        <p class="co-include-title">Plan 100% personalizado</p>
+        <p class="co-include-desc">Diseñado para ti, no para una media estadística. Adaptado a tus gustos y tu ritmo de vida.</p>
+      </div>
+      <div class="co-include-item reveal reveal-delay-1">
+        <span class="co-include-icon" aria-hidden="true">📲</span>
+        <p class="co-include-title">Seguimiento por WhatsApp</p>
+        <p class="co-include-desc">Acceso directo entre sesiones para resolver dudas y mantener el rumbo.</p>
+      </div>
+      <div class="co-include-item reveal reveal-delay-2">
+        <span class="co-include-icon" aria-hidden="true">📋</span>
+        <p class="co-include-title">Material complementario</p>
+        <p class="co-include-desc">Recetas, menús semanales, recursos prácticos y todo lo que necesites para aplicarlo desde el día uno.</p>
+      </div>
+      <div class="co-include-item reveal reveal-delay-3">
+        <span class="co-include-icon" aria-hidden="true">🔄</span>
+        <p class="co-include-title">Ajustes en cada revisión</p>
+        <p class="co-include-desc">El plan evoluciona contigo. Cada revisión trae un plan actualizado a tu progreso real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CÓMO NOS VEMOS ─── -->
+<section class="co-how">
+  <div class="co-how-img">
+    <img src="https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=900&q=80&fm=webp"
+         alt="Consulta online de nutrición" loading="lazy">
+  </div>
+  <div class="co-how-text">
+    <h2>¿Cómo<br>nos vemos?</h2>
+    <p>Las consultas se realizan online, a través de videollamada. Sin desplazamientos, desde la comodidad de donde estés.</p>
+    <p>Para reservar tu cita, escríbeme por WhatsApp. Te cuento todos los detalles y quedamos en el momento que mejor te venga.</p>
+    <p class="co-how-note">Si necesitas cambiar o cancelar la cita, avisa con al menos 24 horas de antelación.</p>
+    <a class="btn btn-primary"
+       href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta%20online."
+       target="_blank" rel="noopener"
+       style="margin-top:.5rem; align-self: flex-start;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+      Reservar cita →
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg class="footer-logo-icon" viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 9C20 6 23 4 26 3" stroke="rgba(255,255,255,.75)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M20 13C17 9 9 10 6 15C3 20 3 30 6 37C9 43 13 47 17 48C19 48.5 21 48.5 23 48C27 47 31 43 34 37C37 30 37 20 34 15C31 10 23 9 20 13Z" stroke="rgba(255,255,255,.75)" stroke-width="1.8" fill="rgba(255,255,255,.08)"/>
+          <path d="M20 42C20 42 12 35 12 28C12 25 15 23 18 25.5C19 26.5 20 29 20 29C20 29 21 26.5 22 25.5C25 23 28 25 28 28C28 35 20 42 20 42Z" fill="rgba(106,153,64,.9)"/>
+        </svg>
+        <span class="nav-wm">Nernutri</span>
+      </div>
+      <p class="footer-tagline">Come bien. Vive mejor.</p>
+    </div>
+    <nav aria-label="Navegación footer">
+      <p class="footer-col-title">Navegación</p>
+      <ul class="footer-links" role="list">
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="consulta-online.html">Consulta Online</a></li>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="footer-contact">
+      <p class="footer-col-title">Contacto</p>
+      <a href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta." target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        602 59 27 94
+      </a>
+      <a href="https://instagram.com/nernutrii" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @nernutrii
+      </a>
+      <a href="mailto:nernutrii@gmail.com" aria-label="Email">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        nernutrii@gmail.com
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p class="footer-copy">© 2026 Nernutri · Nerea Fernández</p>
+    <nav class="footer-legal" aria-label="Legal">
+      <a href="privacidad.html">Privacidad</a>
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="cookies.html">Cookies</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta%20online."
+   target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<script defer src="lib/manifest.js?v=20260616j"></script>
+<script defer src="main.js?v=20260616j"></script>
+
+</body>
+</html>
