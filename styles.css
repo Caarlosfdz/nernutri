@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616j
+   NERNUTRI — styles.css  ?v=20260616k
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -1254,7 +1254,6 @@ h1, h2, h3, h4 {
    9. REDUCED-MOTION
    ============================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
   .splash-bar    { animation: none; width: 100%; }
   .cta-final-ring { animation: none; }
   .hero-text, .hero-photo { animation: none; opacity: 1; }
