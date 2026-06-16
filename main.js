@@ -282,8 +282,8 @@
 
     /* Responsive column count */
     function getCols() {
-      var w = car ? car.offsetWidth : 900;
-      return w < 560 ? 1 : w < 900 ? 2 : 3;
+      var w = car ? car.offsetWidth : 1100;
+      return w < 500 ? 1 : w < 780 ? 2 : w < 1100 ? 3 : 4;
     }
 
     /* Set all card widths so exactly getCols() fit in the viewport */

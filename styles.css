@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616b
+   NERNUTRI — styles.css  ?v=20260616c
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -842,14 +842,15 @@ h1, h2, h3, h4 {
 }
 
 .tcar {
-  --tcar-gap: clamp(1rem, 2vw, 1.5rem);
-  --tcols: 3;
+  --tcar-gap: clamp(.75rem, 1.5vw, 1.25rem);
+  --tcols: 4;
   display: flex; align-items: center;
-  gap: clamp(.5rem, 2vw, 1rem);
+  gap: clamp(.4rem, 1.5vw, .875rem);
   padding-inline: var(--gutter);
 }
-@media (max-width: 900px) { .tcar { --tcols: 2; } }
-@media (max-width: 560px) { .tcar { --tcols: 1; } }
+@media (max-width: 1100px) { .tcar { --tcols: 3; } }
+@media (max-width: 780px)  { .tcar { --tcols: 2; } }
+@media (max-width: 500px)  { .tcar { --tcols: 1; } }
 
 .tcar-viewport { overflow: hidden; flex: 1; }
 
@@ -866,7 +867,7 @@ h1, h2, h3, h4 {
   background: var(--card);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-lg);
-  padding: clamp(1.25rem, 2.5vw, 2rem);
+  padding: clamp(1rem, 2vw, 1.5rem);
   box-shadow: var(--shadow);
   transition: box-shadow .25s, transform .25s;
   display: flex; flex-direction: column;
