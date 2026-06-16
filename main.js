@@ -249,7 +249,24 @@
   }
 
   /* ══════════════════════════════════════════
-     8. NAV DROPDOWN — keyboard/click toggle
+     8. TESTIMONIALS — ticker continuo
+  ══════════════════════════════════════════ */
+  function initTestimonials() {
+    var track = $("#tcar-track");
+    if (!track) return;
+    var origSlides = $$(".tcard", track);
+    if (!origSlides.length) return;
+    var frag = document.createDocumentFragment();
+    origSlides.forEach(function (s) {
+      var c = s.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      frag.appendChild(c);
+    });
+    track.appendChild(frag);
+  }
+
+  /* ══════════════════════════════════════════
+     9. NAV DROPDOWN — keyboard/click toggle
   ══════════════════════════════════════════ */
   function initNavDropdown() {
     $$(".nav-has-dropdown").forEach(function (item) {
@@ -270,10 +287,6 @@
     });
   }
 
-  /* ══════════════════════════════════════════
-     (testimonials section now uses CSS masonry — no JS needed)
-  ══════════════════════════════════════════ */
-  function initTestimonials() { /* no-op */ }
 
   /* ══════════════════════════════════════════
      9. WHATSAPP CTAs — update links from manifest
