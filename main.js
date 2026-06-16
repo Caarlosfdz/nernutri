@@ -249,147 +249,29 @@
   }
 
   /* ══════════════════════════════════════════
-     8. TESTIMONIALS — multi-card infinite carousel
+     8. TESTIMONIALS — ticker continuo (marquee de tarjetas)
   ══════════════════════════════════════════ */
   function initTestimonials() {
-    var track    = $("#tcar-track");
+    var track = $("#tcar-track");
     if (!track) return;
     var origSlides = $$(".tcard", track);
-    var total      = origSlides.length;
-    if (total < 2) return;
+    if (!origSlides.length) return;
 
-    var viewport = track.parentElement;
-    var car      = viewport && viewport.parentElement;
-    var prevBtn  = $("#tcar-prev");
-    var nextBtn  = $("#tcar-next");
-    var dotsWrap = $("#tcar-dots");
-
-    var TRANS_MS = 580;
-    var AUTO_MS  = 5000;
-    var idx      = 0;   /* index of left-most visible real card */
-    var busy     = false;
-    var timer    = null;
-
-    /* Clone all slides: [clone…] [real…] [clone…] for infinite loop */
-    var fragB = document.createDocumentFragment();
-    var fragA = document.createDocumentFragment();
+    /* Duplicar tarjetas para loop CSS infinito seamless */
+    var frag = document.createDocumentFragment();
     origSlides.forEach(function (s) {
-      var cb = s.cloneNode(true); cb.setAttribute("aria-hidden", "true"); fragB.appendChild(cb);
-      var ca = s.cloneNode(true); ca.setAttribute("aria-hidden", "true"); fragA.appendChild(ca);
+      var c = s.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      frag.appendChild(c);
     });
-    track.insertBefore(fragB, track.firstChild);
-    track.appendChild(fragA);
+    track.appendChild(frag);
 
-    /* Responsive column count */
-    function getCols() {
-      var w = car ? car.offsetWidth : 1100;
-      return w < 500 ? 1 : w < 780 ? 2 : w < 1100 ? 3 : 4;
-    }
-
-    /* Set all card widths so exactly getCols() fit in the viewport */
-    function applyWidths() {
-      if (!viewport) return;
-      var cols = getCols();
-      var gap  = parseFloat(getComputedStyle(track).columnGap) || 24;
-      var w    = Math.floor((viewport.offsetWidth - (cols - 1) * gap) / cols);
-      $$(".tcard", track).forEach(function (c) {
-        c.style.flexBasis = w + "px";
-        c.style.minWidth  = w + "px";
-        c.style.maxWidth  = w + "px";
-      });
-    }
-
-    /* Pixel step = card width + gap */
-    function getStep() {
-      var c = track.querySelector(".tcard");
-      if (!c) return 300;
-      return c.offsetWidth + (parseFloat(getComputedStyle(track).columnGap) || 24);
-    }
-
-    /* Move track without or with animation */
-    function setPos(n, animate) {
-      var px = (total + n) * getStep();
-      if (!animate) {
-        track.style.transition = "none";
-        track.style.transform  = "translateX(-" + px + "px)";
-        track.offsetHeight;   /* force reflow */
-      } else {
-        track.style.transition = "transform " + (TRANS_MS / 1000) + "s cubic-bezier(.4,0,.2,1)";
-        track.style.transform  = "translateX(-" + px + "px)";
-      }
-    }
-
-    /* Dots */
-    var dots = [];
-    if (dotsWrap) {
-      dotsWrap.innerHTML = "";
-      for (var n = 0; n < total; n++) {
-        (function (n) {
-          var b = document.createElement("button");
-          b.className = "tcar-dot";
-          b.type      = "button";
-          b.setAttribute("role", "tab");
-          b.setAttribute("aria-label", "Ir al testimonio " + (n + 1));
-          b.addEventListener("click", function () { goTo(n); restart(); });
-          dotsWrap.appendChild(b);
-          dots.push(b);
-        })(n);
-      }
-    }
-
-    function updateDots() {
-      var d = ((idx % total) + total) % total;
-      dots.forEach(function (dot, k) {
-        dot.classList.toggle("is-active", k === d);
-        dot.setAttribute("aria-selected", k === d ? "true" : "false");
-      });
-    }
-
-    function goTo(n) { idx = ((n % total) + total) % total; setPos(idx, true); updateDots(); }
-
-    function next() {
-      if (busy) return; busy = true;
-      idx++;
-      setPos(idx, true); updateDots();
-      setTimeout(function () {
-        if (idx >= total) { idx = 0; setPos(0, false); }
-        busy = false;
-      }, TRANS_MS + 60);
-    }
-
-    function prev() {
-      if (busy) return; busy = true;
-      idx--;
-      setPos(idx, true); updateDots();
-      setTimeout(function () {
-        if (idx < 0) { idx = total - 1; setPos(total - 1, false); }
-        busy = false;
-      }, TRANS_MS + 60);
-    }
-
-    function startTimer() { if (!timer) timer = setInterval(next, AUTO_MS); }
-    function stopTimer()  { clearInterval(timer); timer = null; }
-    function restart()    { stopTimer(); startTimer(); }
-
-    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); restart(); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { next(); restart(); });
-    if (car) {
-      car.addEventListener("mouseenter", stopTimer);
-      car.addEventListener("mouseleave", startTimer);
-    }
-
-    var resizeT;
-    window.addEventListener("resize", function () {
-      clearTimeout(resizeT);
-      resizeT = setTimeout(function () { applyWidths(); setPos(idx, false); }, 150);
+    /* Pausa al hover sobre cualquier tarjeta */
+    track.addEventListener("mouseenter", function () {
+      track.style.animationPlayState = "paused";
     });
-
-    /* Init after layout */
-    applyWidths();
-    requestAnimationFrame(function () {
-      setPos(0, false);
-      updateDots();
-      startTimer();
+    track.addEventListener("mouseleave", function () {
+      track.style.animationPlayState = "running";
     });
   }
 
