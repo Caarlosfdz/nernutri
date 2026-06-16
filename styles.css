@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616e
+   NERNUTRI — styles.css  ?v=20260616f
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -854,9 +854,8 @@ h1, h2, h3, h4 {
   display: flex;
   gap: clamp(.875rem, 1.5vw, 1.25rem);
   width: max-content;
-  animation: tcar-scroll 45s linear infinite;
+  animation: tcar-scroll 28s linear infinite;
 }
-.tcar-track:hover { animation-play-state: paused; }
 
 @keyframes tcar-scroll {
   from { transform: translateX(0); }
@@ -1167,12 +1166,22 @@ h1, h2, h3, h4 {
   .step-title { font-size: 1rem; margin-bottom: .2rem; }
   .step-desc  { font-size: .875rem; }
 
-  /* Testimonials: tarjetas más anchas en móvil */
-  .tcard { flex: 0 0 min(84vw, 300px); }
-  .tcar-track { animation-duration: 28s; }
+  /* Testimonials: scroll horizontal en móvil, sin animación */
   .tcar-viewport {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 96%, transparent 100%);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .tcar-track {
+    animation: none;
+    width: max-content;
+  }
+  .tcard {
+    flex: 0 0 min(82vw, 290px);
+    scroll-snap-align: start;
   }
 
   /* CTA final: apilar botones */
@@ -1189,8 +1198,14 @@ h1, h2, h3, h4 {
 @media (max-width: 380px) {
   .hero-h1-bold   { font-size: 1.875rem; }
   .hero-h1-script { font-size: 1.625rem; }
-  .tcard { flex: 0 0 90vw; }
+  .tcard { flex: 0 0 88vw; }
   .display-lg { font-size: 1.75rem; }
+}
+
+/* Ocultar scrollbar del ticker en móvil */
+@media (max-width: 580px) {
+  .tcar-viewport::-webkit-scrollbar { display: none; }
+  .tcar-viewport { scrollbar-width: none; -ms-overflow-style: none; }
 }
 
 /* =============================================================

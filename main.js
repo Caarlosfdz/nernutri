@@ -265,14 +265,6 @@
       frag.appendChild(c);
     });
     track.appendChild(frag);
-
-    /* Pausa al hover sobre cualquier tarjeta */
-    track.addEventListener("mouseenter", function () {
-      track.style.animationPlayState = "paused";
-    });
-    track.addEventListener("mouseleave", function () {
-      track.style.animationPlayState = "running";
-    });
   }
 
   /* ══════════════════════════════════════════
