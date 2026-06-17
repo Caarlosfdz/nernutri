@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — main.js  ?v=20260616o
+   NERNUTRI — main.js  ?v=20260616p
    IIFE pattern. No import/export. No type="module".
    ============================================================= */
 (function () {
