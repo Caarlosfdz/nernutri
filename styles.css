@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616r
+   NERNUTRI — styles.css  ?v=20260616s
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -330,16 +330,17 @@ h1, h2, h3, h4 {
   background: var(--bg);
   z-index: 899;
   padding: 6rem var(--gutter) 2rem;
-  flex-direction: column; gap: 1.5rem;
+  flex-direction: column; gap: 1rem;
+  overflow-y: auto;
 }
 .nav.is-open ~ .nav-mobile { display: flex; }
 .nav-mobile a {
   font-family: var(--font-display);
-  font-size: 1.875rem; font-weight: 600;
+  font-size: 1.375rem; font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--ink);
   border-bottom: 1px solid var(--line);
-  padding-bottom: 1.25rem;
+  padding-bottom: .875rem;
 }
 .nav-mobile .btn-primary {
   align-self: flex-start; margin-top: 1rem;
@@ -1191,6 +1192,10 @@ h1, h2, h3, h4 {
   .hero-wa { align-self: center; }
   .hero-free { justify-content: center; }
   .hero-meta { justify-content: center; }
+
+  /* Sobre mí: badge y marco decorativo no se deben salir de pantalla */
+  .about-img-wrap::before { inset: -.75rem; }
+  .about-img-badge { bottom: -.75rem; right: -.5rem; padding: .8rem 1rem; font-size: .75rem; max-width: 140px; }
 }
 
 /* ── Servicios (≤ 760px): imagen con ratio fijo, texto compacto ── */
