@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — main.js  ?v=20260616h
+   NERNUTRI — main.js  ?v=20260616o
    IIFE pattern. No import/export. No type="module".
    ============================================================= */
 (function () {
@@ -315,6 +315,21 @@
   }
 
   /* ══════════════════════════════════════════
+     11. IMAGE DOWNLOAD DETERRENT
+  ══════════════════════════════════════════ */
+  function initImageProtection() {
+    document.addEventListener("contextmenu", function (e) {
+      if (e.target.tagName === "IMG") e.preventDefault();
+    });
+    document.addEventListener("dragstart", function (e) {
+      if (e.target.tagName === "IMG") e.preventDefault();
+    });
+    $$("img").forEach(function (img) {
+      img.setAttribute("draggable", "false");
+    });
+  }
+
+  /* ══════════════════════════════════════════
      UTILITIES
   ══════════════════════════════════════════ */
   function escH(s) {
@@ -338,6 +353,7 @@
     safe(initTestimonials, "testimonials");
     safe(initWhatsApp,     "whatsapp");
     safe(initHeroParallax, "heroParallax");
+    safe(initImageProtection, "imageProtection");
 
     document.documentElement.classList.add("is-ready");
   }

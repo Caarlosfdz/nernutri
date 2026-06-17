@@ -1,5 +1,5 @@
 /* =============================================================
-   NERNUTRI — styles.css  ?v=20260616n
+   NERNUTRI — styles.css  ?v=20260616o
    Paleta natural · verde botánico oliva · tipografía editorial cálida (Fraunces)
    =============================================================
 
@@ -81,7 +81,7 @@ body {
 }
 
 img, svg, video { display: block; max-width: 100%; }
-img { height: auto; }
+img { height: auto; -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; }
 button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; padding: 0; }
