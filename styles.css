@@ -567,6 +567,21 @@ h1, h2, h3, h4 {
   .about-inner { grid-template-columns: 1fr 1fr; align-items: center; }
 }
 
+/* Variante sin foto: una sola columna centrada */
+.about-inner--solo {
+  display: block;
+  max-width: 760px;
+  text-align: center;
+}
+@media (min-width: 960px) {
+  .about-inner--solo { grid-template-columns: none; }
+}
+.about-inner--solo .about-text { max-width: none; }
+.about-inner--solo .kicker { justify-content: center; }
+.about-inner--solo .about-bio { margin-inline: auto; max-width: 60ch; }
+.about-inner--solo .about-pillars { max-width: 540px; margin-inline: auto; text-align: left; }
+.about-inner--solo .btn { display: inline-flex; }
+
 .about-img-wrap {
   position: relative;
   aspect-ratio: 4/5;
@@ -622,12 +637,14 @@ h1, h2, h3, h4 {
 .about-text .kicker { margin-bottom: 1.25rem; }
 .about-title {
   margin-bottom: 1.5rem;
-  font-size: clamp(1.5rem, 2.4vw, 2.125rem);
-  line-height: 1.18;
+  font-size: clamp(2rem, 3.8vw, 3.125rem);
+  line-height: 1.12;
 }
 .about-title em {
-  font-size: 1.08em;
-  margin-left: .04em;
+  display: inline-block;
+  font-size: 1.28em;
+  line-height: 1;
+  margin-top: .12em;
 }
 .about-bio {
   color: var(--ink-soft); font-size: 1.0625rem;
