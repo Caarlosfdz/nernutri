@@ -272,11 +272,31 @@
     $$(".nav-has-dropdown").forEach(function (item) {
       var trigger = $(".nav-dropdown-trigger", item);
       if (!trigger) return;
+      var closeTimer = null;
+      function open() {
+        clearTimeout(closeTimer);
+        item.classList.add("is-open");
+        trigger.setAttribute("aria-expanded", "true");
+      }
+      function scheduleClose() {
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(function () {
+          item.classList.remove("is-open");
+          trigger.setAttribute("aria-expanded", "false");
+        }, 250);
+      }
       trigger.addEventListener("click", function (e) {
         e.stopPropagation();
-        var open = item.classList.toggle("is-open");
-        trigger.setAttribute("aria-expanded", open ? "true" : "false");
+        if (item.classList.contains("is-open")) {
+          clearTimeout(closeTimer);
+          item.classList.remove("is-open");
+          trigger.setAttribute("aria-expanded", "false");
+        } else {
+          open();
+        }
       });
+      item.addEventListener("mouseenter", open);
+      item.addEventListener("mouseleave", scheduleClose);
     });
     document.addEventListener("click", function () {
       $$(".nav-has-dropdown.is-open").forEach(function (item) {

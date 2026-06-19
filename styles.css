@@ -396,12 +396,12 @@ h1, h2, h3, h4 {
   display: flex; align-items: center; justify-content: center;
 }
 .splash-logo-icon {
-  width: 96px; height: 120px;
+  width: 124px; height: 155px;
   opacity: 0;
   transform-origin: 50% 60%;
   animation:
     splash-fade-in .5s var(--ease-out) .05s forwards,
-    splash-breathe 1.7s ease-in-out 1s infinite;
+    splash-breathe 1.7s ease-in-out 2.6s infinite;
 }
 @keyframes splash-fade-in {
   to { opacity: 1; }
@@ -411,13 +411,16 @@ h1, h2, h3, h4 {
   50%      { transform: scale(1.06); }
 }
 
-/* Bocado animado: el círculo del color del fondo "muerde" la manzana */
+/* Bocados animados: círculos del color del fondo "muerden" la manzana, uno tras otro */
 .splash-bite {
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0);
-  animation: splash-chomp .45s cubic-bezier(.34, 1.7, .5, 1) .55s forwards;
+  animation: splash-chomp .4s cubic-bezier(.34, 1.7, .5, 1) forwards;
 }
+.splash-bite-1 { animation-delay: .55s; }
+.splash-bite-2 { animation-delay: 1.3s; }
+.splash-bite-3 { animation-delay: 2.05s; }
 @keyframes splash-chomp {
   to { transform: scale(1); }
 }
@@ -781,13 +784,13 @@ h1, h2, h3, h4 {
   list-style: none; padding: 0; margin: 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: clamp(1rem, 2vw, 1.75rem);
+  gap: clamp(1.25rem, 2.6vw, 2.5rem);
   position: relative;
 }
 /* Línea conectora (desktop) */
 .steps-flow::before {
   content: '';
-  position: absolute; top: 28px; left: 9%; right: 9%;
+  position: absolute; top: 36px; left: 9%; right: 9%;
   height: 2px;
   background: linear-gradient(90deg, var(--accent-light), var(--accent) 50%, var(--accent-light));
   z-index: 0;
@@ -806,17 +809,17 @@ h1, h2, h3, h4 {
 @media (max-width: 860px) { .step { align-items: flex-start; text-align: left; } }
 
 .step-node {
-  width: 56px; height: 56px; border-radius: 50%;
+  width: 72px; height: 72px; border-radius: 50%;
   background: var(--card);
   border: 2px solid var(--accent);
   display: grid; place-items: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   box-shadow: 0 4px 14px rgba(106,153,64,.18);
   transition: transform .3s var(--ease-out), background .3s;
 }
 .step-node span {
   font-family: var(--font-display);
-  font-size: 1.5rem; font-weight: 600; color: var(--accent-2);
+  font-size: 1.875rem; font-weight: 600; color: var(--accent-2);
   transition: color .3s;
 }
 .step:hover .step-node { background: var(--accent); transform: translateY(-4px); }
@@ -824,14 +827,14 @@ h1, h2, h3, h4 {
 
 .step-title {
   font-family: var(--font-display);
-  font-size: clamp(1.0625rem, 1.4vw, 1.25rem); font-weight: 600;
+  font-size: clamp(1.1875rem, 1.7vw, 1.4375rem); font-weight: 600;
   letter-spacing: -0.01em;
   margin-bottom: .5rem; color: var(--ink);
-  max-width: 18ch;
+  max-width: 19ch;
 }
 .step-desc {
-  font-size: .9375rem; color: var(--ink-soft); line-height: 1.6;
-  max-width: 24ch;
+  font-size: 1rem; color: var(--ink-soft); line-height: 1.65;
+  max-width: 25ch;
 }
 @media (max-width: 860px) { .step-title, .step-desc { max-width: none; } }
 
