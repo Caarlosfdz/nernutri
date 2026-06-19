@@ -359,7 +359,6 @@ h1, h2, h3, h4 {
   width: max-content;
   animation: marquee-scroll 32s linear infinite;
 }
-.marquee-track:hover { animation-play-state: paused; }
 .marquee-item {
   display: flex; align-items: center; gap: .875rem;
   font-family: var(--font-label);
@@ -387,7 +386,6 @@ h1, h2, h3, h4 {
   background: var(--bg);
   z-index: 9990;
   display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 2rem;
   animation: splash-exit 0.5s var(--ease-out) 3.8s forwards;
 }
 #splash.is-hidden { opacity: 0; pointer-events: none; animation: none; }
@@ -395,80 +393,33 @@ h1, h2, h3, h4 {
 @keyframes splash-exit { to { opacity: 0; pointer-events: none; } }
 
 .splash-logo {
-  display: flex; align-items: center; gap: .875rem;
+  display: flex; align-items: center; justify-content: center;
 }
 .splash-logo-icon {
-  width: 56px; height: 56px;
+  width: 96px; height: 120px;
   opacity: 0;
-  animation: splash-fade-in .6s var(--ease-out) .1s forwards;
-}
-.splash-wordmark {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  overflow: hidden;
-  display: flex;
-  align-items: baseline;
-}
-.splash-wordmark span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(60%);
-  animation: splash-char .45s var(--ease-out) forwards;
-}
-.swm-serif { font-family: var(--font-display); color: var(--ink); }
-.swm-script {
-  font-family: var(--font-script);
-  color: var(--accent);
-  font-size: 1.25em;
-  font-weight: 600;
-  letter-spacing: normal;
-  padding-left: .08em;
-}
-.splash-wordmark span:nth-child(1) { animation-delay: .15s; }
-.splash-wordmark span:nth-child(2) { animation-delay: .20s; }
-.splash-wordmark span:nth-child(3) { animation-delay: .25s; }
-.splash-wordmark span:nth-child(4) { animation-delay: .35s; }
-
-@keyframes splash-char {
-  to { opacity: 1; transform: translateY(0); }
+  transform-origin: 50% 60%;
+  animation:
+    splash-fade-in .5s var(--ease-out) .05s forwards,
+    splash-breathe 1.7s ease-in-out 1s infinite;
 }
 @keyframes splash-fade-in {
   to { opacity: 1; }
 }
+@keyframes splash-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
 
-.splash-bar-wrap {
-  position: relative;
-  width: min(240px, 55vw);
-  height: 4px;
-  background: var(--line-soft);
-  border-radius: 2px;
-  overflow: visible;
+/* Bocado animado: el círculo del color del fondo "muerde" la manzana */
+.splash-bite {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  animation: splash-chomp .45s cubic-bezier(.34, 1.7, .5, 1) .55s forwards;
 }
-.splash-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border-radius: 2px;
-  width: 0;
-  animation: splash-bar 3s var(--ease-soft) .3s forwards;
-}
-.splash-bar-apple {
-  position: absolute;
-  top: 50%; left: 0;
-  width: 16px; height: 20px;
-  transform: translate(-50%, -50%);
-  animation: splash-bar-apple-move 3s var(--ease-soft) .3s forwards;
-}
-.splash-bar-apple svg {
-  width: 100%; height: 100%; display: block;
-  transform-origin: 50% 85%;
-  animation: splash-bar-apple-wobble .35s ease-in-out .3s infinite alternate;
-}
-@keyframes splash-bar { to { width: 100%; } }
-@keyframes splash-bar-apple-move { to { left: 100%; } }
-@keyframes splash-bar-apple-wobble {
-  from { transform: rotate(-10deg); }
-  to   { transform: rotate(10deg); }
+@keyframes splash-chomp {
+  to { transform: scale(1); }
 }
 
 /* --- HERO (dos columnas: texto + foto) --- */
@@ -802,9 +753,9 @@ h1, h2, h3, h4 {
 }
 
 .steps-inner { max-width: 1180px; margin-inline: auto; }
-.steps-header { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.steps-header { margin-bottom: clamp(2.5rem, 5vw, 4rem); text-align: center; }
 .steps-intro {
-  margin-top: 1.25rem; max-width: 48ch;
+  margin-top: 1.25rem; max-width: 48ch; margin-inline: auto;
   font-size: clamp(1rem, 1.4vw, 1.1875rem);
   color: var(--ink-soft); line-height: 1.7;
 }
@@ -1323,9 +1274,8 @@ h1, h2, h3, h4 {
    9. REDUCED-MOTION
    ============================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .splash-bar    { animation: none; width: 100%; }
-  .splash-bar-apple, .splash-bar-apple svg { animation: none; }
-  .splash-bar-apple { left: 100%; }
+  .splash-logo-icon { animation: none; opacity: 1; }
+  .splash-bite { animation: none; transform: scale(1); }
   .cta-final-ring { animation: none; }
   .hero-text, .hero-photo { animation: none; opacity: 1; }
 }
