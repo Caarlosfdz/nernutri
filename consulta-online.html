@@ -57,16 +57,16 @@
       max-width: 38ch;
       line-height: 1.65;
     }
-    .co-hero-img {
-      height: 100%;
-      min-height: 52vh;
-      overflow: hidden;
+    .co-hero--solo {
+      grid-template-columns: 1fr;
+      text-align: center;
     }
-    .co-hero-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+    .co-hero--solo .co-hero-text {
+      max-width: 640px;
+      margin-inline: auto;
     }
+    .co-hero--solo .co-hero-title { align-items: center; }
+    .co-hero--solo .co-hero-sub { margin-inline: auto; }
 
     /* Split section (1ª Consulta + Revisiones) */
     .co-split {
@@ -199,10 +199,12 @@
     }
     .co-how-img {
       overflow: hidden;
+      background: var(--bg-3);
+      display: flex; align-items: center; justify-content: center;
     }
-    .co-how-img img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
+    .co-how-illus {
+      width: min(70%, 320px);
+      height: auto;
     }
     .co-how-text {
       background: var(--warm);
@@ -236,7 +238,6 @@
     /* Mobile */
     @media (max-width: 720px) {
       .co-hero { grid-template-columns: 1fr; }
-      .co-hero-img { min-height: 220px; order: -1; }
       .co-hero-text { padding: 2rem 1.25rem 1.5rem; }
       .co-split-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .co-how { grid-template-columns: 1fr; }
@@ -303,17 +304,13 @@
 <main id="main">
 
 <!-- ─── HERO ─── -->
-<section class="co-hero">
+<section class="co-hero co-hero--solo">
   <div class="co-hero-text">
     <h1 class="co-hero-title">
       <span class="co-hero-bold">Consulta</span>
       <span class="co-hero-script">Online</span>
     </h1>
     <p class="co-hero-sub">Nutrición personalizada desde donde estés. Sin desplazamientos, sin plantillas.</p>
-  </div>
-  <div class="co-hero-img">
-    <img draggable="false" oncontextmenu="return false" src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=85&fm=webp"
-         alt="Alimentos frescos y naturales" loading="eager">
   </div>
 </section>
 
@@ -345,7 +342,7 @@
   <div class="container">
     <div class="co-plan-inner reveal">
       <h2>Entrega del plan</h2>
-      <p>En menos de 72 horas recibes tu plan completo: menús, recetas, recomendaciones específicas y todo el material que necesitas para empezar desde el primer día.</p>
+      <p>En 24-48 horas recibes tu plan completo: menús, recetas, recomendaciones específicas y todo el material que necesitas para empezar desde el primer día.</p>
       <p>Si surge alguna duda después, puedes escribirme directamente por WhatsApp. Estoy aquí.</p>
     </div>
   </div>
@@ -384,9 +381,21 @@
 
 <!-- ─── CÓMO NOS VEMOS ─── -->
 <section class="co-how">
-  <div class="co-how-img">
-    <img draggable="false" oncontextmenu="return false" src="https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=900&q=80&fm=webp"
-         alt="Consulta online de nutrición" loading="lazy">
+  <div class="co-how-img" aria-hidden="true">
+    <svg class="co-how-illus" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect x="90" y="120" width="220" height="148" rx="14" fill="#FAFAF7" stroke="#6A9940" stroke-width="3"/>
+      <rect x="106" y="136" width="188" height="116" rx="4" fill="#1A2B12"/>
+      <circle cx="200" cy="190" r="38" fill="#6A9940"/>
+      <path d="M200 178c0-8-7-15-16-15-8 0-15 7-15 15 0 13 31 31 31 31s31-18 31-31c0-8-7-15-15-15-9 0-16 7-16 15z" fill="#FAFAF7"/>
+      <circle cx="188" cy="234" r="4" fill="#FAFAF7" opacity=".5"/>
+      <circle cx="200" cy="234" r="4" fill="#FAFAF7" opacity=".5"/>
+      <circle cx="212" cy="234" r="4" fill="#FAFAF7" opacity=".5"/>
+      <path d="M70 268L330 268L312 286L88 286Z" fill="#6A9940"/>
+      <path d="M320 110C320 100 330 92 340 90" stroke="#6A9940" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <circle cx="335" cy="150" r="5" fill="#A9C77F"/>
+      <circle cx="70" cy="100" r="6" fill="#A9C77F"/>
+      <circle cx="55" cy="300" r="5" fill="#A9C77F"/>
+    </svg>
   </div>
   <div class="co-how-text">
     <h2>¿Cómo<br>nos vemos?</h2>
