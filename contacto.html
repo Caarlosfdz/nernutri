@@ -169,6 +169,18 @@
     }
 
     .ct-submit:active { transform: translateY(0); }
+    .ct-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+    .ct-honeypot { display: none; }
+
+    .ct-error {
+      display: none;
+      font-size: .8125rem;
+      color: #b3261e;
+      margin-top: .75rem;
+      text-align: center;
+    }
+    .ct-error.is-visible { display: block; }
 
     /* ── Success state ── */
     .ct-success {
@@ -305,7 +317,12 @@
     <div class="ct-card">
       <p class="ct-card-note"><span>*</span> campos obligatorios</p>
 
-      <form id="ct-form" action="mailto:nernutrii@gmail.com" method="post" enctype="text/plain" novalidate>
+      <form id="ct-form" novalidate>
+
+        <input type="hidden" name="access_key" value="TU_CLAVE_DE_WEB3FORMS_AQUI">
+        <input type="hidden" name="subject" value="Nuevo mensaje desde la web de Nernutri">
+        <input type="hidden" name="from_name" value="Formulario web Nernutri">
+        <input type="checkbox" name="botcheck" class="ct-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="ct-row">
           <div class="ct-field">
@@ -324,7 +341,8 @@
           <p class="ct-char-count"><span id="ct-chars">0</span> de 600 caracteres máximos</p>
         </div>
 
-        <button type="submit" class="ct-submit">Enviar</button>
+        <button type="submit" class="ct-submit" id="ct-submit-btn">Enviar</button>
+        <p class="ct-error" id="ct-error" role="alert"></p>
 
       </form>
 
@@ -416,6 +434,42 @@
   if (ta && counter) {
     ta.addEventListener("input", function () {
       counter.textContent = ta.value.length;
+    });
+  }
+
+  /* Envío del formulario vía Web3Forms (sin backend propio) */
+  var form = document.getElementById("ct-form");
+  var submitBtn = document.getElementById("ct-submit-btn");
+  var errorBox = document.getElementById("ct-error");
+  var successBox = document.getElementById("ct-success");
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      errorBox.classList.remove("is-visible");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando…";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.success) {
+            form.style.display = "none";
+            successBox.style.display = "block";
+          } else {
+            throw new Error(data.message || "Error al enviar");
+          }
+        })
+        .catch(function () {
+          errorBox.textContent = "No se ha podido enviar. Escríbeme directamente a nernutrii@gmail.com o por WhatsApp.";
+          errorBox.classList.add("is-visible");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Enviar";
+        });
     });
   }
 </script>
