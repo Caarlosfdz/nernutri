@@ -403,12 +403,12 @@ h1, h2, h3, h4 {
   animation: splash-fade-in .6s var(--ease-out) .1s forwards;
 }
 .splash-wordmark {
-  font-family: var(--font-display);
   font-size: clamp(2rem, 6vw, 3.5rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   overflow: hidden;
   display: flex;
+  align-items: baseline;
 }
 .splash-wordmark span {
   display: inline-block;
@@ -416,14 +416,19 @@ h1, h2, h3, h4 {
   transform: translateY(60%);
   animation: splash-char .45s var(--ease-out) forwards;
 }
+.swm-serif { font-family: var(--font-display); color: var(--ink); }
+.swm-script {
+  font-family: var(--font-script);
+  color: var(--accent);
+  font-size: 1.25em;
+  font-weight: 600;
+  letter-spacing: normal;
+  padding-left: .08em;
+}
 .splash-wordmark span:nth-child(1) { animation-delay: .15s; }
 .splash-wordmark span:nth-child(2) { animation-delay: .20s; }
 .splash-wordmark span:nth-child(3) { animation-delay: .25s; }
-.splash-wordmark span:nth-child(4) { animation-delay: .30s; }
-.splash-wordmark span:nth-child(5) { animation-delay: .35s; }
-.splash-wordmark span:nth-child(6) { animation-delay: .40s; }
-.splash-wordmark span:nth-child(7) { animation-delay: .45s; color: var(--accent); }
-.splash-wordmark span:nth-child(8) { animation-delay: .50s; color: var(--accent); }
+.splash-wordmark span:nth-child(4) { animation-delay: .35s; }
 
 @keyframes splash-char {
   to { opacity: 1; transform: translateY(0); }
@@ -433,11 +438,12 @@ h1, h2, h3, h4 {
 }
 
 .splash-bar-wrap {
-  width: min(220px, 50vw);
-  height: 2px;
+  position: relative;
+  width: min(240px, 55vw);
+  height: 4px;
   background: var(--line-soft);
   border-radius: 2px;
-  overflow: hidden;
+  overflow: visible;
 }
 .splash-bar {
   height: 100%;
@@ -446,7 +452,24 @@ h1, h2, h3, h4 {
   width: 0;
   animation: splash-bar 3s var(--ease-soft) .3s forwards;
 }
+.splash-bar-apple {
+  position: absolute;
+  top: 50%; left: 0;
+  width: 16px; height: 20px;
+  transform: translate(-50%, -50%);
+  animation: splash-bar-apple-move 3s var(--ease-soft) .3s forwards;
+}
+.splash-bar-apple svg {
+  width: 100%; height: 100%; display: block;
+  transform-origin: 50% 85%;
+  animation: splash-bar-apple-wobble .35s ease-in-out .3s infinite alternate;
+}
 @keyframes splash-bar { to { width: 100%; } }
+@keyframes splash-bar-apple-move { to { left: 100%; } }
+@keyframes splash-bar-apple-wobble {
+  from { transform: rotate(-10deg); }
+  to   { transform: rotate(10deg); }
+}
 
 /* --- HERO (dos columnas: texto + foto) --- */
 .hero {
@@ -647,6 +670,7 @@ h1, h2, h3, h4 {
 
 .about-text .kicker { margin-bottom: 1.25rem; }
 .about-title { margin-bottom: 1.5rem; }
+.about-title em { font-size: .82em; }
 .about-bio {
   color: var(--ink-soft); font-size: 1.0625rem;
   line-height: 1.8; margin-bottom: 2.5rem;
@@ -999,46 +1023,6 @@ h1, h2, h3, h4 {
   margin-bottom: .35rem;
 }
 
-/* --- Sub-apartado: mensajes reales de WhatsApp --- */
-.wa-reviews { margin-top: clamp(2.5rem, 5vw, 4rem); }
-.wa-reviews-kicker {
-  display: flex; align-items: center; justify-content: center; gap: .5rem;
-  font-family: var(--font-label);
-  font-size: .8125rem; font-weight: 600;
-  letter-spacing: .06em; text-transform: uppercase;
-  color: var(--ink-mute);
-  margin-bottom: 1.75rem;
-}
-.wa-reviews-kicker svg { color: #25D366; flex-shrink: 0; }
-.wa-reviews-grid {
-  display: grid; gap: 1.5rem 1.25rem;
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 1000px; margin: 0 auto;
-}
-.wa-msg { display: flex; flex-direction: column; align-items: center; gap: .75rem; margin: 0; }
-.wa-bubble {
-  position: relative; align-self: stretch;
-  background: #fff;
-  border-radius: 14px 14px 14px 4px;
-  padding: 1rem 1.1rem .6rem;
-  box-shadow: 0 3px 14px rgba(26,43,18,.09);
-  font-size: .95rem; line-height: 1.55; color: var(--ink-soft);
-}
-.wa-bubble::after {
-  content: ""; position: absolute; left: -7px; bottom: 0;
-  border-style: solid; border-width: 0 9px 9px 0;
-  border-color: transparent #fff transparent transparent;
-}
-.wa-bubble p { margin: 0 0 .35rem; }
-.wa-time {
-  display: flex; align-items: center; justify-content: flex-end; gap: .25rem;
-  font-size: .6875rem; color: var(--ink-mute);
-}
-.wa-stars { color: #E8B931; font-size: .9rem; letter-spacing: .04em; }
-@media (max-width: 860px) {
-  .wa-reviews-grid { grid-template-columns: 1fr; max-width: 460px; }
-}
-
 .tcard-foot {
   display: flex; align-items: center; justify-content: center;
   flex-wrap: wrap; gap: .5rem 1rem;
@@ -1333,6 +1317,8 @@ h1, h2, h3, h4 {
    ============================================================= */
 @media (prefers-reduced-motion: reduce) {
   .splash-bar    { animation: none; width: 100%; }
+  .splash-bar-apple, .splash-bar-apple svg { animation: none; }
+  .splash-bar-apple { left: 100%; }
   .cta-final-ring { animation: none; }
   .hero-text, .hero-photo { animation: none; opacity: 1; }
 }
