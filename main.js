@@ -21,34 +21,6 @@
     "?text=" + (D.whatsappMsg || "Hola%2C%20me%20gustar%C3%ADa%20pedir%20una%20consulta%20inicial%20gratuita.");
 
   /* ══════════════════════════════════════════
-     1. SPLASH — double safety net
-  ══════════════════════════════════════════ */
-  function initSplash() {
-    var splash = $("#splash");
-    if (!splash) return;
-
-    function hide() {
-      splash.classList.add("is-hidden");
-      setTimeout(function () { splash.remove(); }, 700);
-      document.body.style.overflow = "";
-    }
-
-    document.body.style.overflow = "hidden";
-
-    /* JS safety net fires at 5s (CSS fires at 4.5s) */
-    setTimeout(hide, 5000);
-
-    /* If JS is fast, also hide on DOMContentLoaded */
-    if (document.readyState === "complete") {
-      setTimeout(hide, 300);
-    } else {
-      window.addEventListener("load", function () {
-        setTimeout(hide, 300);
-      });
-    }
-  }
-
-  /* ══════════════════════════════════════════
      2. NAVIGATION — sticky + mobile toggle
   ══════════════════════════════════════════ */
   function initNav() {
@@ -362,7 +334,6 @@
      BOOT
   ══════════════════════════════════════════ */
   function boot() {
-    safe(initSplash,       "splash");
     safe(initNav,          "nav");
     safe(initNavDropdown,  "navDropdown");
     safe(initGradient,     "gradient");

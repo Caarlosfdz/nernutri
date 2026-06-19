@@ -380,51 +380,6 @@ h1, h2, h3, h4 {
    6. SECCIONES
    ============================================================= */
 
-/* --- SPLASH --- */
-#splash {
-  position: fixed; inset: 0;
-  background: var(--bg);
-  z-index: 9990;
-  display: flex; align-items: center; justify-content: center;
-  animation: splash-exit 0.5s var(--ease-out) 3.8s forwards;
-}
-#splash.is-hidden { opacity: 0; pointer-events: none; animation: none; }
-
-@keyframes splash-exit { to { opacity: 0; pointer-events: none; } }
-
-.splash-logo {
-  display: flex; align-items: center; justify-content: center;
-}
-.splash-logo-icon {
-  width: 124px; height: 155px;
-  opacity: 0;
-  transform-origin: 50% 60%;
-  animation:
-    splash-fade-in .5s var(--ease-out) .05s forwards,
-    splash-breathe 1.7s ease-in-out 2.6s infinite;
-}
-@keyframes splash-fade-in {
-  to { opacity: 1; }
-}
-@keyframes splash-breathe {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.06); }
-}
-
-/* Bocados animados: círculos del color del fondo "muerden" la manzana, uno tras otro */
-.splash-bite {
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(0);
-  animation: splash-chomp .4s cubic-bezier(.34, 1.7, .5, 1) forwards;
-}
-.splash-bite-1 { animation-delay: .55s; }
-.splash-bite-2 { animation-delay: 1.3s; }
-.splash-bite-3 { animation-delay: 2.05s; }
-@keyframes splash-chomp {
-  to { transform: scale(1); }
-}
-
 /* --- HERO (dos columnas: texto + foto) --- */
 .hero {
   background: var(--bg);
@@ -1294,8 +1249,6 @@ h1, h2, h3, h4 {
    9. REDUCED-MOTION
    ============================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .splash-logo-icon { animation: none; opacity: 1; }
-  .splash-bite { animation: none; transform: scale(1); }
   .cta-final-ring { animation: none; }
   .hero-text, .hero-photo { animation: none; opacity: 1; }
 }
