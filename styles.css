@@ -695,9 +695,7 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: clamp(280px, 35vw, 440px);
-  border-top: 1px solid rgba(27,43,29,.07);
 }
-.service-row:last-child { border-bottom: 1px solid rgba(27,43,29,.07); }
 @media (max-width: 760px) {
   .service-row { grid-template-columns: 1fr; }
 }
@@ -980,6 +978,66 @@ h1, h2, h3, h4 {
 }
 .tcard-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .tcard-photo--top img { object-position: top; }
+
+/* Variante sin foto: cita destacada (se ve intencionada, no a medias) */
+.tcard--quote { justify-content: center; }
+.tcard--quote .tcard-text {
+  position: relative;
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+.tcard--quote .tcard-text::before {
+  content: "\201C";
+  display: block;
+  font-family: var(--font-display);
+  font-size: 3.25rem; line-height: .55;
+  color: var(--accent);
+  opacity: .3;
+  margin-bottom: .35rem;
+}
+
+/* --- Sub-apartado: mensajes reales de WhatsApp --- */
+.wa-reviews { margin-top: clamp(2.5rem, 5vw, 4rem); }
+.wa-reviews-kicker {
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  font-family: var(--font-label);
+  font-size: .8125rem; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 1.75rem;
+}
+.wa-reviews-kicker svg { color: #25D366; flex-shrink: 0; }
+.wa-reviews-grid {
+  display: grid; gap: 1.5rem 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1000px; margin: 0 auto;
+}
+.wa-msg { display: flex; flex-direction: column; align-items: center; gap: .75rem; margin: 0; }
+.wa-bubble {
+  position: relative; align-self: stretch;
+  background: #fff;
+  border-radius: 14px 14px 14px 4px;
+  padding: 1rem 1.1rem .6rem;
+  box-shadow: 0 3px 14px rgba(26,43,18,.09);
+  font-size: .95rem; line-height: 1.55; color: var(--ink-soft);
+}
+.wa-bubble::after {
+  content: ""; position: absolute; left: -7px; bottom: 0;
+  border-style: solid; border-width: 0 9px 9px 0;
+  border-color: transparent #fff transparent transparent;
+}
+.wa-bubble p { margin: 0 0 .35rem; }
+.wa-time {
+  display: flex; align-items: center; justify-content: flex-end; gap: .25rem;
+  font-size: .6875rem; color: var(--ink-mute);
+}
+.wa-stars { color: #E8B931; font-size: .9rem; letter-spacing: .04em; }
+@media (max-width: 860px) {
+  .wa-reviews-grid { grid-template-columns: 1fr; max-width: 460px; }
+}
 
 .tcard-foot {
   display: flex; align-items: center; justify-content: center;
