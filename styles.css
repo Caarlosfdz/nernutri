@@ -637,7 +637,7 @@ h1, h2, h3, h4 {
 /* --- SERVICIOS (02) — filas alternantes imagen/texto --- */
 .services {
   background: var(--cream);
-  padding: var(--section-py) 0;
+  padding: var(--section-py) 0 calc(var(--section-py) * .45);
   position: relative; overflow: hidden;
 }
 
@@ -722,7 +722,7 @@ h1, h2, h3, h4 {
 
 /* --- CÓMO FUNCIONA — línea de tiempo de 5 pasos --- */
 .steps {
-  padding: var(--section-py) var(--gutter);
+  padding: calc(var(--section-py) * .55) var(--gutter) var(--section-py);
   background: var(--bg);
   position: relative; overflow: hidden;
 }
