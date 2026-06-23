@@ -604,6 +604,15 @@ h1, h2, h3, h4 {
   line-height: 1;
   margin-top: .12em;
 }
+.about-name {
+  display: block;
+  font-family: var(--font-label);
+  font-size: .5em;
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: var(--accent-2);
+  margin-bottom: .5em;
+}
 .about-bio {
   color: var(--ink-soft); font-size: 1.0625rem;
   line-height: 1.8; margin-bottom: 2.5rem;
