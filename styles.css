@@ -26,9 +26,9 @@
   --ink:       #1A2B12;       /* verde oliva muy oscuro */
   --ink-soft:  #3A5028;       /* oliva oscuro medio */
   --ink-mute:  #6B7E50;       /* oliva apagado */
-  --accent:    #6A9940;       /* verde botánico oliva */
-  --accent-2:  #4D7528;       /* verde bosque oscuro */
-  --accent-light: #E6EDD5;    /* oliva muy claro para fondos */
+  --accent:    #5FA06B;       /* verde salvia (identidad nuevo logo) */
+  --accent-2:  #4A8256;       /* verde salvia oscuro */
+  --accent-light: #E2F2E4;    /* verde salvia muy claro para fondos */
   --warm:      #F5F0E6;       /* crema cálida */
   --warm-2:    #EAE2D0;       /* crema más oscura */
   --cream:     #EDE8D5;       /* beige cálido para secciones */
@@ -208,12 +208,12 @@ h1, h2, h3, h4 {
 .btn-primary {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(106,153,64,.25);
+  box-shadow: 0 4px 16px rgba(95,160,107,.25);
 }
 .btn-primary:hover {
   background: var(--accent-2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(106,153,64,.35);
+  box-shadow: 0 8px 28px rgba(95,160,107,.35);
 }
 .btn-primary:active { transform: translateY(0); }
 
@@ -301,12 +301,12 @@ h1, h2, h3, h4 {
   border-radius: 100px;
   transition: background .2s, transform .25s var(--ease-out), box-shadow .25s;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(106,153,64,.25);
+  box-shadow: 0 2px 8px rgba(95,160,107,.25);
 }
 .nav-cta:hover {
   background: var(--accent-2);
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(106,153,64,.3);
+  box-shadow: 0 4px 16px rgba(95,160,107,.3);
 }
 
 /* Hamburger */
@@ -450,10 +450,10 @@ h1, h2, h3, h4 {
   border-radius: 100px;
   font-family: var(--font-label);
   font-size: .9375rem; font-weight: 600; letter-spacing: .01em;
-  box-shadow: 0 4px 16px rgba(106,153,64,.28);
+  box-shadow: 0 4px 16px rgba(95,160,107,.28);
   transition: background .2s, transform .25s var(--ease-out), box-shadow .25s;
 }
-.hero-wa:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(106,153,64,.35); }
+.hero-wa:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(95,160,107,.35); }
 
 .hero-free {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -511,7 +511,7 @@ h1, h2, h3, h4 {
   font-size: clamp(8rem, 22vw, 20rem);
   font-weight: 900; line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(106,153,64,.08);
+  -webkit-text-stroke: 1px rgba(95,160,107,.08);
   pointer-events: none; user-select: none;
   letter-spacing: -0.05em;
 }
@@ -577,7 +577,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-label);
   font-size: .8125rem; font-weight: 700;
   letter-spacing: .03em; line-height: 1.4;
-  box-shadow: 0 8px 24px rgba(106,153,64,.35);
+  box-shadow: 0 8px 24px rgba(95,160,107,.35);
   text-align: center;
   max-width: 170px;
 }
@@ -587,7 +587,7 @@ h1, h2, h3, h4 {
   content: '';
   position: absolute;
   inset: -1.5rem;
-  border: 1.5px dashed rgba(106,153,64,.2);
+  border: 1.5px dashed rgba(95,160,107,.2);
   border-radius: calc(var(--r-xl) + 1.5rem);
   z-index: -1;
 }
@@ -791,7 +791,7 @@ h1, h2, h3, h4 {
   border: 2px solid var(--accent);
   display: grid; place-items: center;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 14px rgba(106,153,64,.18);
+  box-shadow: 0 4px 14px rgba(95,160,107,.18);
   transition: transform .3s var(--ease-out), background .3s;
 }
 .step-node span {
@@ -1023,7 +1023,7 @@ h1, h2, h3, h4 {
 .cta-final-glow {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 700px 500px at 50% 50%,
-    rgba(106,153,64,.12) 0%, transparent 70%);
+    rgba(95,160,107,.12) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -1031,7 +1031,7 @@ h1, h2, h3, h4 {
 .cta-final-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(106,153,64,.18);
+  border: 1px solid rgba(95,160,107,.18);
   pointer-events: none;
   animation: ring-pulse 6s ease-in-out infinite;
 }
@@ -1187,7 +1187,7 @@ h1, h2, h3, h4 {
   z-index: 0; pointer-events: none;
   background:
     radial-gradient(circle 700px at var(--mx, 50%) var(--my, 50%),
-      rgba(106,153,64,.06) 0%, transparent 60%);
+      rgba(95,160,107,.06) 0%, transparent 60%);
   transition: background .15s linear;
 }
 
