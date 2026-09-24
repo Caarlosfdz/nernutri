@@ -20,15 +20,16 @@
 :root {
   /* Paleta natural */
   --bg:        #FAFAF7;       /* blanco cálido */
-  --bg-2:      #F2F4E9;       /* oliva muy claro */
-  --bg-3:      #E5EDD4;       /* oliva suave */
+  --bg-2:      #EDF4EC;       /* verde salvia muy claro */
+  --bg-3:      #DCEEDD;       /* verde salvia suave */
   --card:      #FFFFFF;
   --ink:       #1A2B12;       /* verde oliva muy oscuro */
   --ink-soft:  #3A5028;       /* oliva oscuro medio */
-  --ink-mute:  #6B7E50;       /* oliva apagado */
+  --ink-mute:  #5F8269;       /* verde salvia apagado */
   --accent:    #5FA06B;       /* verde salvia (identidad nuevo logo) */
   --accent-2:  #4A8256;       /* verde salvia oscuro */
   --accent-light: #E2F2E4;    /* verde salvia muy claro para fondos */
+  --accent-pale:  #8FC194;    /* verde salvia pálido del logo, para fondos oscuros */
   --warm:      #F5F0E6;       /* crema cálida */
   --warm-2:    #EAE2D0;       /* crema más oscura */
   --cream:     #EDE8D5;       /* beige cálido para secciones */
@@ -1065,7 +1066,7 @@ h1, h2, h3, h4 {
 .cta-final-title em {
   font-family: var(--font-script);
   font-style: normal;
-  color: var(--accent);
+  color: var(--accent-pale);
 }
 
 .cta-final-copy {
@@ -1088,7 +1089,7 @@ h1, h2, h3, h4 {
   padding-bottom: 2px;
   transition: color .2s, border-color .2s;
 }
-.cta-instagram:hover { color: var(--accent); border-color: var(--accent); }
+.cta-instagram:hover { color: var(--accent-pale); border-color: var(--accent-pale); }
 
 /* --- FOOTER --- */
 .footer {
@@ -1116,7 +1117,7 @@ h1, h2, h3, h4 {
 }
 .footer-logo-icon { width: 32px; height: 32px; flex-shrink: 0; }
 .footer-logo .nav-wm { display: inline; color: #fff; }
-.footer-logo .nav-wm > span { color: var(--accent); }
+.footer-logo .nav-wm > span { color: var(--accent-pale); }
 
 .footer-tagline { font-size: .875rem; }
 
@@ -1140,7 +1141,7 @@ h1, h2, h3, h4 {
   margin-bottom: .625rem;
   transition: color .2s;
 }
-.footer-contact a:hover { color: var(--accent); }
+.footer-contact a:hover { color: var(--accent-pale); }
 
 .footer-bottom {
   max-width: 1180px; margin-inline: auto;
