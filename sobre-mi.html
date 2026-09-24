@@ -14,21 +14,33 @@
 <head>
   <script>(function(p){if(p.endsWith("/index.html")){location.replace(p.slice(0,-10)+location.search+location.hash);}else if(p.endsWith(".html")){location.replace(p.slice(0,-5)+location.search+location.hash);}})(location.pathname);</script>
   <script>(function(){
-    function stripHash(){
-      if (location.hash && location.hash !== "#main") {
-        history.replaceState(null, "", location.pathname + location.search);
-      }
+    var ANCHORS = ["servicios","como-funciona","testimonios"];
+    function land(id){
+      var el = document.getElementById(id);
+      if (!el) return false;
+      el.scrollIntoView({behavior:"auto", block:"start"});
+      history.replaceState(null, "", "/" + id);
+      return true;
     }
-    window.addEventListener("load", stripHash);
+    window.addEventListener("load", function(){
+      var stored = sessionStorage.getItem("nf-anchor");
+      if (stored) {
+        sessionStorage.removeItem("nf-anchor");
+        if (land(stored)) return;
+      }
+      var h = location.hash.replace("#", "");
+      if (h && ANCHORS.indexOf(h) !== -1) land(h);
+    });
     document.addEventListener("click", function(e){
       var a = e.target.closest && e.target.closest("a[href]");
       if (!a) return;
-      var m = a.getAttribute("href").match(/^\/?#([\w-]+)$/);
-      if (!m || m[1] === "main") return;
+      var m = a.getAttribute("href").match(/^\/?([\w-]+)\/?$/);
+      if (!m || ANCHORS.indexOf(m[1]) === -1) return;
       var el = document.getElementById(m[1]);
       if (!el) return;
       e.preventDefault();
       el.scrollIntoView({behavior:"smooth", block:"start"});
+      history.pushState(null, "", "/" + m[1]);
     });
   })();</script>
   <meta charset="UTF-8">
@@ -76,7 +88,7 @@
         <li><a href="consulta-online" role="menuitem">Consulta Online</a></li>
       </ul>
     </li>
-    <li><a href="/#servicios">Servicios</a></li>
+    <li><a href="/servicios">Servicios</a></li>
     <li><a href="contacto">Contacto</a></li>
   </ul>
 
@@ -95,7 +107,7 @@
   <a href="/" class="nav-mobile-link">Inicio</a>
   <a href="sobre-mi" class="nav-mobile-link">Sobre mí</a>
   <a href="consulta-online" class="nav-mobile-link">Consulta Online</a>
-  <a href="/#servicios" class="nav-mobile-link">Servicios</a>
+  <a href="/servicios" class="nav-mobile-link">Servicios</a>
   <a href="contacto" class="nav-mobile-link">Contacto</a>
   <a class="btn btn-primary"
      href="https://wa.me/34602592794?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20consulta."
@@ -172,9 +184,9 @@
       <p class="footer-col-title">Navegación</p>
       <ul class="footer-links" role="list">
         <li><a href="sobre-mi">Sobre mí</a></li>
-        <li><a href="/#servicios">Servicios</a></li>
-        <li><a href="/#como-funciona">Cómo funciona</a></li>
-        <li><a href="/#testimonios">Testimonios</a></li>
+        <li><a href="/servicios">Servicios</a></li>
+        <li><a href="/como-funciona">Cómo funciona</a></li>
+        <li><a href="/testimonios">Testimonios</a></li>
         <li><a href="contacto">Contacto</a></li>
       </ul>
     </nav>
